@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #2d3436; background: #fff; }
+
+  /* ── COVER ── */
+  .cover {
+    height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background: linear-gradient(135deg, #6c5ce7 0%, #0984e3 50%, #00cec9 100%);
+    color: #fff; text-align: center; page-break-after: always;
+  }
+  .cover h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+  .cover p  { font-size: 18px; opacity: .85; max-width: 420px; line-height: 1.5; }
+  .cover .badge { margin-top: 30px; background: rgba(255,255,255,.2); border-radius: 30px; padding: 8px 24px; font-size: 14px; }
+
+  /* ── PAGE ── */
+  .page { padding: 50px 55px; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex; align-items: center; margin-bottom: 22px; gap: 12px;
+  }
+  .section-num {
+    width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 22px; font-weight: 700; }
+
+  /* color themes per section */
+  .c1 .section-num, .c1 .card-icon { background: #6c5ce7; }
+  .c2 .section-num, .c2 .card-icon { background: #e17055; }
+  .c3 .section-num, .c3 .card-icon { background: #00b894; }
+  .c4 .section-num, .c4 .card-icon { background: #0984e3; }
+  .c5 .section-num, .c5 .card-icon { background: #fdcb6e; color: #2d3436; }
+  .c6 .section-num, .c6 .card-icon { background: #e84393; }
+
+  .c1 .card { border-left: 4px solid #6c5ce7; }
+  .c2 .card { border-left: 4px solid #e17055; }
+  .c3 .card { border-left: 4px solid #00b894; }
+  .c4 .card { border-left: 4px solid #0984e3; }
+  .c5 .card { border-left: 4px solid #fdcb6e; }
+  .c6 .card { border-left: 4px solid #e84393; }
+
+  /* ── CARDS ── */
+  .card {
+    background: #f8f9fa; border-radius: 10px; padding: 16px 20px; margin-bottom: 14px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .card-icon {
+    width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px; flex-shrink: 0;
+  }
+  .card-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .card-body p  { font-size: 13px; color: #636e72; line-height: 1.45; }
+  .tag { display: inline-block; background: #dfe6e9; border-radius: 4px; padding: 2px 8px; font-size: 11px; color: #2d3436; margin-right: 4px; font-weight: 600; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center; font-size: 12px; color: #b2bec3; padding: 30px 0 20px;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 10px 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 8px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-purple { background: #6c5ce7; }
+  .dot-orange { background: #e17055; }
+  .dot-green  { background: #00b894; }
+  .dot-blue   { background: #0984e3; }
+  .dot-yellow { background: #fdcb6e; }
+  .dot-pink   { background: #e84393; }
+</style>
+</head>
+<body>
+
+<!-- ═══════ COVER ═══════ -->
+<div class="cover">
+  <h1>📱 App Tech Stack Guide</h1>
+  <p>Everything you need to know to build a modern Android & iOS mobile application</p>
+  <div class="badge">Based on the "Unchecked" Project · 2026</div>
+</div>
+
+<!-- ═══════ PAGE 1 ═══════ -->
+<div class="page c1">
+  <div class="section-header"><div class="section-num">1</div><h2>Language & Framework</h2></div>
+
+  <div class="card">
+    <div class="card-icon">💻</div>
+    <div class="card-body">
+      <h3>JavaScript <span class="tag">Language</span></h3>
+      <p>Write once, run on both Android and iOS. The most popular language for cross-platform mobile apps.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">⚛️</div>
+    <div class="card-body">
+      <h3>React Native <span class="tag">Framework</span></h3>
+      <p>Industry-standard framework by Meta. Renders real native components—not webviews—so the app feels fast and smooth.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🚀</div>
+    <div class="card-body">
+      <h3>Expo <span class="tag">Toolchain</span></h3>
+      <p>Simplifies React Native development. Handles native configs for you and provides free cloud builds (EAS).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE 2 ═══════ -->
+<div class="page c2">
+  <div class="section-header"><div class="section-num">2</div><h2>Backend & Database (Firebase)</h2></div>
+
+  <div class="card">
+    <div class="card-icon">🔐</div>
+    <div class="card-body">
+      <h3>Firebase Auth <span class="tag">Authentication</span></h3>
+      <p>Secure user login and signup. Supports Email/Password, Google, Apple, and Phone logins.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🗄️</div>
+    <div class="card-body">
+      <h3>Cloud Firestore <span class="tag">Database</span></h3>
+      <p>Real-time NoSQL database. Stores user profiles, matches, chat messages, and swipe history in the cloud.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🖼️</div>
+    <div class="card-body">
+      <h3>Firebase Storage <span class="tag">File Storage</span></h3>
+      <p>Stores user-uploaded photos and media files. Delivers them instantly via Google's global CDN.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE 3 ═══════ -->
+<div class="page c3">
+  <div class="section-header"><div class="section-num">3</div><h2>Navigation</h2></div>
+
+  <div class="card">
+    <div class="card-icon">🧭</div>
+    <div class="card-body">
+      <h3>React Navigation <span class="tag">Routing</span></h3>
+      <p>Handles screen transitions with native-feeling animations. Includes Stack Navigator, Bottom Tabs, and more.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE 3 continued ═══════ -->
+<div class="page c4">
+  <div class="section-header"><div class="section-num">4</div><h2>UI & Animations</h2></div>
+
+  <div class="card">
+    <div class="card-icon">✨</div>
+    <div class="card-body">
+      <h3>Reanimated <span class="tag">Animations</span></h3>
+      <p>Silky-smooth 60fps animations (card swiping, transitions) running directly on the native UI thread.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">👆</div>
+    <div class="card-body">
+      <h3>Gesture Handler <span class="tag">Touch</span></h3>
+      <p>Captures swipes, pinches, and long-presses—essential for Tinder-style interactions.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🎨</div>
+    <div class="card-body">
+      <h3>Skia + SVG <span class="tag">Graphics</span></h3>
+      <p>High-performance 2D rendering for custom charts, gradients, and advanced visual effects.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE 4 ═══════ -->
+<div class="page c5">
+  <div class="section-header"><div class="section-num">5</div><h2>Device Features</h2></div>
+
+  <div class="card">
+    <div class="card-icon">📸</div>
+    <div class="card-body">
+      <h3>Image Picker <span class="tag">Camera</span></h3>
+      <p>Access the phone's camera or photo gallery to let users upload profile pictures.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">📍</div>
+    <div class="card-body">
+      <h3>Location <span class="tag">GPS</span></h3>
+      <p>Get the user's real-time GPS location for proximity features like "people near you."</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">📳</div>
+    <div class="card-body">
+      <h3>Haptics <span class="tag">Vibration</span></h3>
+      <p>Subtle vibrations on button taps, matches, and actions—adds a premium, tactile feel.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE 5 ═══════ -->
+<div class="page c6">
+  <div class="section-header"><div class="section-num">6</div><h2>Build & Deploy</h2></div>
+
+  <div class="card">
+    <div class="card-icon">📦</div>
+    <div class="card-body">
+      <h3>EAS Build <span class="tag">Distribution</span></h3>
+      <p>Expo's free cloud service to compile your code into installable .apk (Android) and .ipa (iOS) files.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🧪</div>
+    <div class="card-body">
+      <h3>Jest <span class="tag">Testing</span></h3>
+      <p>Automated testing to make sure new code changes don't break existing features before release.</p>
+    </div>
+  </div>
+
+  <br/>
+  <div class="section-header" style="margin-top: 30px;"><div class="section-num" style="background: #2d3436;">✓</div><h2>Quick Checklist for a New App</h2></div>
+  <ul class="checklist">
+    <li><span class="dot dot-purple"></span> <b>Framework:</b> React Native + Expo</li>
+    <li><span class="dot dot-orange"></span> <b>Backend:</b> Firebase (Auth + Firestore + Storage)</li>
+    <li><span class="dot dot-green"></span> <b>Navigation:</b> React Navigation</li>
+    <li><span class="dot dot-blue"></span> <b>Animations:</b> Reanimated + Gesture Handler</li>
+    <li><span class="dot dot-yellow"></span> <b>Hardware:</b> Expo APIs (Camera, Location, Haptics)</li>
+    <li><span class="dot dot-pink"></span> <b>Distribution:</b> EAS Build (Free Cloud APK/IPA)</li>
+  </ul>
+
+  <div class="footer">Made with ❤️ for Future App Development · Unchecked Project · 2026</div>
+</div>
+
+</body>
+</html>
