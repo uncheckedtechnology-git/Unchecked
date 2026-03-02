@@ -2,7 +2,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import Slider from "@react-native-community/slider";
-import { colors, spacing, typography } from "../theme";
+import { useTheme, spacing, typography } from "../theme";
 
 export default function SliderRow({
   label,
@@ -13,6 +13,8 @@ export default function SliderRow({
   step = 1,
   hint,
 }) {
+  const { colors } = useTheme();
+
   return (
     <View style={{ gap: 10 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
