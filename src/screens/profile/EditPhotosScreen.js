@@ -10,7 +10,7 @@ import { getUid, updateUser } from "../../services/userService";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { pickImageCompressed } from "../../services/imagePicker";
-import { uploadProfilePhoto, deleteProfilePhoto } from "../../services/storageService";
+import { uploadToCloudinary, deleteFromCloudinary } from "../../services/cloudinaryService";
 
 function Tile({ uri, index, onAdd, onRemove, uploading }) {
   const { colors } = useTheme();
@@ -80,6 +80,7 @@ export default function EditPhotosScreen({ navigation }) {
   const [uid, setUid] = useState(null);
   const [user, setUser] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -106,18 +107,17 @@ export default function EditPhotosScreen({ navigation }) {
     if (!picked?.uri) return;
 
     setSaving(true);
+    setUploadStatus("Uploading photo…");
     try {
-      // Upload to Firebase Storage first
       const newIndex = photos.length;
-      const downloadURL = await uploadProfilePhoto(uid, picked.uri, newIndex);
-
-      // Save the download URL to Firestore
-      const next = [...(user?.photos || []), { uri: downloadURL, type: "remote" }].slice(0, maxPhotos);
+      const cloudUrl = await uploadToCloudinary(picked.uri, uid, newIndex);
+      const next = [...(user?.photos || []), { uri: cloudUrl, type: "remote" }].slice(0, maxPhotos);
       await updateUser(uid, { photos: next });
     } catch (err) {
       Alert.alert("Upload failed", err.message || "Could not upload photo. Please try again.");
     } finally {
       setSaving(false);
+      setUploadStatus("");
     }
   }
 
@@ -125,10 +125,7 @@ export default function EditPhotosScreen({ navigation }) {
     if (!uid) return;
     setSaving(true);
     try {
-      // Delete from Firebase Storage
-      await deleteProfilePhoto(uid, index);
-
-      // Remove from Firestore
+      await deleteFromCloudinary(uid, index);
       const next = (user?.photos || []).filter((_, i) => i !== index);
       await updateUser(uid, { photos: next });
     } finally {
@@ -156,6 +153,12 @@ export default function EditPhotosScreen({ navigation }) {
           Photos are stored securely in the cloud and visible to other users.
         </Text>
       </Card>
+
+      {!!uploadStatus && (
+        <Text style={[typography.small, { color: colors.text2, textAlign: "center", marginTop: spacing.md }]}>
+          {uploadStatus}
+        </Text>
+      )}
 
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 14, marginTop: spacing.lg }}>
         {tiles.map((uri, i) => (

@@ -1,6 +1,6 @@
 // src/screens/onboarding/PhotosPromptsScreen.js
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, ScrollView, Image, Pressable } from "react-native";
+import { View, Text, ScrollView, Image, Pressable, Alert } from "react-native";
 import { useTheme, spacing, typography, radius } from "../../theme";
 import ProgressDots from "../../components/ProgressDots";
 import Button from "../../components/Button";
@@ -11,16 +11,17 @@ import Divider from "../../components/Divider";
 import { getUid, updateUser } from "../../services/userService";
 import { loadConfig } from "../../services/configService";
 import { pickImageCompressed } from "../../services/imagePicker";
-import { uploadAllPhotos } from "../../services/storageService";
+import { uploadAllPhotosToCloudinary } from "../../services/cloudinaryService";
 import { pickDefaultPrompts } from "../../data/defaults";
 
 export default function PhotosPromptsScreen({ navigation }) {
   const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [config, setConfig] = useState(null);
-  const [photos, setPhotos] = useState([]); // {uri,type}
-  const [prompts, setPrompts] = useState([]); // {q,a}
+  const [photos, setPhotos] = useState([]);
+  const [prompts, setPrompts] = useState([]);
   const [saving, setSaving] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -59,12 +60,20 @@ export default function PhotosPromptsScreen({ navigation }) {
     if (!uid) return;
     setSaving(true);
     try {
-      // Upload photos to Firebase Storage and get download URLs
-      const uploadedPhotos = await uploadAllPhotos(uid, photos);
+      setUploadStatus("Uploading photos to cloud…");
+      const uploadedPhotos = await uploadAllPhotosToCloudinary(uid, photos);
+      setUploadStatus("Saving profile…");
       await updateUser(uid, { photos: uploadedPhotos, prompts });
       navigation.navigate("VibeOnboarding");
+    } catch (err) {
+      Alert.alert(
+        "Upload failed",
+        err.message || "Could not upload photos. Please try again.",
+        [{ text: "OK" }]
+      );
     } finally {
       setSaving(false);
+      setUploadStatus("");
     }
   }
 
@@ -116,7 +125,7 @@ export default function PhotosPromptsScreen({ navigation }) {
           </View>
 
           <Text style={[typography.tiny, { color: colors.text2, marginTop: spacing.md, lineHeight: 16 }]}>
-            Tip: Tap a photo to remove it. Photos are uploaded to the cloud automatically when you press Next.
+            Tip: Tap a photo to remove it. Photos are uploaded to the cloud when you press Next.
           </Text>
         </Card>
 
@@ -145,8 +154,17 @@ export default function PhotosPromptsScreen({ navigation }) {
 
         <View style={{ marginTop: spacing.lg }}>
           <ProgressDots total={3} index={1} />
+          {!!uploadStatus && (
+            <Text style={[typography.small, { color: colors.text2, textAlign: "center", marginTop: spacing.md }]}>
+              {uploadStatus}
+            </Text>
+          )}
           <View style={{ marginTop: spacing.lg }}>
-            <Button title={saving ? "Uploading photos…" : "Next"} onPress={onFinish} loading={saving} />
+            <Button
+              title={saving ? uploadStatus || "Uploading…" : "Next"}
+              onPress={onFinish}
+              loading={saving}
+            />
           </View>
         </View>
       </ScrollView>
