@@ -12,6 +12,7 @@ import { loadConfig } from "../../services/configService";
 import { getLikesReceived } from "../../services/matchService";
 
 function LikeCard({ person, blurred, onPress }) {
+  const { colors } = useTheme();
   const uri = person?.photos?.[0]?.uri;
   return (
     <Pressable

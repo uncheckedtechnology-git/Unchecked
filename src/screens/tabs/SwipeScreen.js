@@ -12,7 +12,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { useTheme, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Chip from "../../components/Chip";
 import Divider from "../../components/Divider";
 import AvatarCard from "../../components/AvatarCard";
@@ -91,6 +91,7 @@ function normalizePhotos(photosLike) {
 }
 
 function SectionTitle({ children }) {
+  const { colors } = useTheme();
   return (
     <Text style={[typography.small, { color: colors.text2, marginBottom: 8 }]}>
       {children}
@@ -110,6 +111,7 @@ function BubbleRow({ items }) {
 }
 
 function PromptCard({ prompt, idx }) {
+  const { colors } = useTheme();
   const q = prompt?.q || prompt?.question || `Prompt ${idx + 1}`;
   const a = prompt?.a || prompt?.answer || "";
   if (!a && !q) return null;
@@ -302,7 +304,7 @@ export default function SwipeScreen() {
   const handleVoiceReact = useCallback(async (uri, duration, promptQ) => {
     Alert.alert(
       "Voice Note Sent! 🎙️",
-      `Sent a ${Math.round(duration/1000)}s reaction to: "${promptQ}"`
+      `Sent a ${Math.round(duration / 1000)}s reaction to: "${promptQ}"`
     );
     runOnJS(flyOut)("like");
   }, [flyOut]);
@@ -725,6 +727,7 @@ function PeekCard({ profile }) {
 }
 
 function Header({ onReset, onFilters }) {
+  const { colors } = useTheme();
   return (
     <View style={styles.header}>
       {/* Gradient brand name */}

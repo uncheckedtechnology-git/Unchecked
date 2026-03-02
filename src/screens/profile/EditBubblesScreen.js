@@ -13,6 +13,7 @@ import { db } from "../../config/firebase";
 import { loadConfig } from "../../services/configService";
 
 function ChipsBlock({ title, subtitle, items, selected, onToggle }) {
+  const { colors } = useTheme();
   return (
     <Card>
       <Text style={[typography.h3, { color: colors.text }]}>{title}</Text>
@@ -62,7 +63,7 @@ export default function EditBubblesScreen({ navigation }) {
     setter((prev) => {
       const has = prev.includes(value);
       if (has) return prev.filter((x) => x !== value);
-      if (prev.length >= max) return prev; // max cap
+      if (prev.length >= max) return prev;
       return [...prev, value];
     });
   }
@@ -109,7 +110,7 @@ export default function EditBubblesScreen({ navigation }) {
         </Text>
         <Divider />
         <Text style={[typography.tiny, { color: colors.text2, lineHeight: 16 }]}>
-          Matching uses intents + how your “ok with” overlaps with their “self-concerns”.
+          Matching uses intents + how your "ok with" overlaps with their "self-concerns".
         </Text>
       </Card>
 

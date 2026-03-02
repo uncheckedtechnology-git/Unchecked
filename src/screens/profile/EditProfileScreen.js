@@ -9,6 +9,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
 function Row({ title, subtitle, onPress }) {
+  const { colors } = useTheme();
   return (
     <Pressable onPress={onPress}>
       <View style={{ paddingVertical: 14, gap: 4 }}>

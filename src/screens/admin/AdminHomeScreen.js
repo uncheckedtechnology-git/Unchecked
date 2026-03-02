@@ -9,6 +9,7 @@ import Divider from "../../components/Divider";
 import { ensureAdminDoc, getAdminPin } from "../../services/adminService";
 
 function Row({ title, subtitle, onPress }) {
+  const { colors } = useTheme();
   return (
     <Pressable onPress={onPress}>
       <View style={{ paddingVertical: 14, gap: 4 }}>
