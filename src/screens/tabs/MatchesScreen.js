@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable, Image, Modal } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useTheme, spacing, typography, radius } from "../../theme";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import EmptyState from "../../components/EmptyState";
@@ -12,7 +12,6 @@ import { loadConfig } from "../../services/configService";
 import { getLikesReceived } from "../../services/matchService";
 
 function LikeCard({ person, blurred, onPress }) {
-  const { colors } = useTheme();
   const uri = person?.photos?.[0]?.uri;
   return (
     <Pressable

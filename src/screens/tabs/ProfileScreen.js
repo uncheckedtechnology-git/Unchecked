@@ -102,40 +102,6 @@ export default function ProfileScreen({ navigation }) {
 
       {/* Stats card */}
       <View style={{ padding: spacing.xl, gap: 16, marginTop: -8 }}>
-
-        {/* ── Theme Toggle (top, easy access) ────── */}
-        <View style={{ flexDirection: "row", gap: 6, alignSelf: "center" }}>
-          {THEME_OPTIONS.map((opt) => {
-            const isActive = themeMode === opt.key;
-            return (
-              <Pressable
-                key={opt.key}
-                onPress={() => setTheme(opt.key)}
-                style={{
-                  paddingVertical: 6,
-                  paddingHorizontal: 14,
-                  borderRadius: 20,
-                  borderWidth: 1.5,
-                  borderColor: isActive ? colors.primary : colors.border,
-                  backgroundColor: isActive ? (isDark ? "rgba(232,53,109,0.15)" : "rgba(232,53,109,0.10)") : colors.card2,
-                }}
-              >
-                <Text
-                  style={[
-                    typography.tiny,
-                    {
-                      color: isActive ? colors.primary : colors.text2,
-                      fontWeight: isActive ? "700" : "500",
-                    },
-                  ]}
-                >
-                  {opt.label}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
-
         <Card>
           <Text style={[typography.label, { color: colors.primary, marginBottom: 12 }]}>
             Top Intents
@@ -178,6 +144,45 @@ export default function ProfileScreen({ navigation }) {
           </Text>
         </Card>
 
+        {/* ── Theme Toggle ────────────────────── */}
+        <Card>
+          <Text style={[typography.label, { color: colors.primary, marginBottom: 12 }]}>
+            🎨 Appearance
+          </Text>
+          <View style={{ flexDirection: "row", gap: 8 }}>
+            {THEME_OPTIONS.map((opt) => {
+              const isActive = themeMode === opt.key;
+              return (
+                <Pressable
+                  key={opt.key}
+                  onPress={() => setTheme(opt.key)}
+                  style={{
+                    flex: 1,
+                    paddingVertical: 10,
+                    borderRadius: 12,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderWidth: 1.5,
+                    borderColor: isActive ? colors.primary : colors.border,
+                    backgroundColor: isActive ? (isDark ? "rgba(232,53,109,0.15)" : "rgba(232,53,109,0.10)") : colors.card2,
+                  }}
+                >
+                  <Text
+                    style={[
+                      typography.small,
+                      {
+                        color: isActive ? colors.primary : colors.text2,
+                        fontWeight: isActive ? "700" : "500",
+                      },
+                    ]}
+                  >
+                    {opt.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        </Card>
 
         {/* Actions */}
         <Button
