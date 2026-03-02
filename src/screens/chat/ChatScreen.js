@@ -13,7 +13,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { colors, useTheme, spacing, typography, radius } from "../../theme";
+import { useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Divider from "../../components/Divider";
 

@@ -1,7 +1,7 @@
 // src/screens/onboarding/PhotosPromptsScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Image, Pressable } from "react-native";
-import { colors, useTheme, spacing, typography, radius } from "../../theme";
+import { useTheme, spacing, typography, radius } from "../../theme";
 import ProgressDots from "../../components/ProgressDots";
 import Button from "../../components/Button";
 import Card from "../../components/Card";

@@ -1,7 +1,7 @@
 // src/screens/admin/AdminHomeScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { colors, useTheme, spacing, typography, radius } from "../../theme";
+import { useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";

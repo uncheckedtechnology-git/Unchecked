@@ -1,7 +1,7 @@
 // src/screens/onboarding/SelfConcernsBubblesScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 
 import ProgressDots from "../../components/ProgressDots";
 import Button from "../../components/Button";

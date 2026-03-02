@@ -9,7 +9,7 @@ import {
   Modal,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import ProgressDots from "../../components/ProgressDots";

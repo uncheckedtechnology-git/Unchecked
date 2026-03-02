@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Pressable, Animated } from "react-native";
 import { Audio } from "expo-av";
-import { colors, useTheme, radius, spacing, typography, shadow } from "../theme";
+import { useTheme, radius, spacing, typography, shadow } from "../theme";
 import * as Haptics from "expo-haptics";
 
 export default function VoiceRecorder({ onRecordComplete, maxDurationMs = 15000 }) {

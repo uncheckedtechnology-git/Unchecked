@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { View, Text, TextInput } from "react-native";
-import { colors, useTheme, radius, spacing, typography } from "../theme";
+import { useTheme, radius, spacing, typography } from "../theme";
 import VerticalTicker from "./VerticalTicker";
 
 export default function TextField({

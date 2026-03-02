@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors, useTheme, spacing, typography, radius } from "../../theme";
+import { useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";

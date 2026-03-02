@@ -12,7 +12,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import Chip from "../../components/Chip";
 import Divider from "../../components/Divider";
 import AvatarCard from "../../components/AvatarCard";

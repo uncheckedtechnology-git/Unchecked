@@ -1,7 +1,7 @@
 // src/screens/onboarding/IntentSlidersScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import ProgressDots from "../../components/ProgressDots";
 import Button from "../../components/Button";
 import Card from "../../components/Card";

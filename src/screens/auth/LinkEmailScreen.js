@@ -1,7 +1,7 @@
 // src/screens/auth/LinkEmailScreen.js
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Card from "../../components/Card";

@@ -1,7 +1,7 @@
 // src/screens/profile/EditIntentsScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import SliderRow from "../../components/SliderRow";

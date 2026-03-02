@@ -2,7 +2,7 @@
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors, useTheme, radius, spacing, typography } from "../theme";
+import { useTheme, radius, spacing, typography } from "../theme";
 import * as Haptics from "expo-haptics";
 
 export default function Chip({ label, selected, onToggle, style }) {

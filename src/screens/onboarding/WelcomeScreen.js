@@ -1,7 +1,7 @@
 // src/screens/onboarding/WelcomeScreen.js
 import React from "react";
 import { View, Text } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 

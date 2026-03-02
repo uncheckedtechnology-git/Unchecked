@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { colors, useTheme, radius, spacing } from "../theme";
+import { useTheme, radius, spacing } from "../theme";
 
 export default function Card({ children, style, padded = true, glow = false }) {
   const { colors } = useTheme();

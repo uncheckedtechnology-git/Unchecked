@@ -1,7 +1,7 @@
 // src/screens/tabs/CircleScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Chip from "../../components/Chip";
 import EmptyState from "../../components/EmptyState";

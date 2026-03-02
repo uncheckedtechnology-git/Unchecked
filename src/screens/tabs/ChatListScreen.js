@@ -14,7 +14,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { doc, getDoc } from "firebase/firestore";
 
-import { colors, useTheme, spacing, typography, radius } from "../../theme";
+import { useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import EmptyState from "../../components/EmptyState";
 import Avatar from "../../components/Avatar";
@@ -60,6 +60,7 @@ function isDead(match) {
 }
 
 function ChatListInner({ navigation, route }) {
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
 
   const [uid, setUid] = useState(null);

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Pressable, Text, ActivityIndicator, Animated } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors, useTheme, radius, spacing, typography, shadow } from "../theme";
+import { useTheme, radius, spacing, typography, shadow } from "../theme";
 
 export default function Button({
   title,

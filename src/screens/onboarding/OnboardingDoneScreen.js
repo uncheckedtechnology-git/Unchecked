@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { View, Text } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 

@@ -1,7 +1,7 @@
 // src/screens/auth/SignupScreen.js
 import React, { useState } from "react";
 import { Text, ScrollView } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";

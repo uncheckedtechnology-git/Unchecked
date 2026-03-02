@@ -8,7 +8,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { computeProfileComplete } from "../services/profileCompletion";
 
 import { auth, db } from "../config/firebase";
-import { colors, useTheme, typography } from "../theme";
+import { useTheme, typography } from "../theme";
 import { useAppState } from "../state/appState";
 
 import AuthNavigator from "./AuthNavigator";

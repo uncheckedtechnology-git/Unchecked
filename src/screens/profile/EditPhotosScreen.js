@@ -1,7 +1,7 @@
 // src/screens/profile/EditPhotosScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, Image, Pressable, ScrollView, Alert } from "react-native";
-import { colors, useTheme, spacing, typography, radius, shadow } from "../../theme";
+import { useTheme, spacing, typography, radius, shadow } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Divider from "../../components/Divider";

@@ -1,7 +1,7 @@
 // src/screens/profile/EditBubblesScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
-import { colors, useTheme, spacing, typography } from "../../theme";
+import { useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Chip from "../../components/Chip";
