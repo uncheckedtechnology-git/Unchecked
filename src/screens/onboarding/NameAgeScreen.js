@@ -86,7 +86,7 @@ export default function NameAgeScreen({ navigation }) {
         age: age, // ✅ keep for filtering convenience
       });
 
-      navigation.navigate("PhotosPrompts");
+      navigation.navigate("IntentSliders");
     } finally {
       setSaving(false);
     }
@@ -180,7 +180,7 @@ export default function NameAgeScreen({ navigation }) {
 
       <View style={{ flex: 1 }} />
 
-      <ProgressDots total={3} index={0} />
+      <ProgressDots total={5} index={0} />
       <View style={{ marginTop: spacing.lg }}>
         <Button title="Next" onPress={onNext} loading={saving} />
       </View>
