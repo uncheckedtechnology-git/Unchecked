@@ -1,0 +1,25 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // ═══════════════════════════════════════════
+    // USER PROFILE PHOTOS
+    // Path: users/{userId}/photos/{fileName}
+    // ═══════════════════════════════════════════
+    match /users/{userId}/photos/{fileName} {
+      // Anyone logged in can view photos (needed for swipe cards)
+      allow read: if request.auth != null;
+
+      // Users can only upload/delete their own photos
+      allow write: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.size < 5 * 1024 * 1024  // Max 5 MB
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Default: deny everything else
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

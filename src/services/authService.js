@@ -1,11 +1,11 @@
-// src/services/authService.js
 import { auth, db } from "../config/firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { collection, getDocs, limit, query, where } from "firebase/firestore";
 
-// import { sgnOut } from "firebase/auth";
+export async function sendPasswordReset(email) {
+  await sendPasswordResetEmail(auth, email.trim().toLowerCase());
+}
 
 export async function signupEmail({ email, password, name, dobISO, gender, interestedIn }) {
   const cred = await createUserWithEmailAndPassword(auth, email.trim().toLowerCase(), password);
@@ -71,8 +71,7 @@ export async function signupEmailCredentialsOnly({ email, password }) {
 }
 
 export async function emailExists(email) {
-  const methods = await fetchSignInMethodsForEmail(auth, email.trim().toLowerCase());
-  return Array.isArray(methods) && methods.length > 0;
+  return emailExistsInUsersCollection(email);
 }
 
 export async function emailExistsInUsersCollection(email) {

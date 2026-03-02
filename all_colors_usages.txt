@@ -1,0 +1,356 @@
+src/screens/admin/ConfigEditorScreen.js:97:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/admin/ConfigEditorScreen.js:98:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/admin/ConfigEditorScreen.js:104:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/admin/ConfigEditorScreen.js:106:        <Text style={[typography.small, { color: colors.text2, marginTop: 16 }]}>← Back</Text>
+src/screens/admin/ConfigEditorScreen.js:109:      <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>Edit config</Text>
+src/screens/admin/ConfigEditorScreen.js:110:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/admin/ConfigEditorScreen.js:115:        <Text style={[typography.h3, { color: colors.text }]}>Toggles</Text>
+src/screens/admin/ConfigEditorScreen.js:117:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/admin/ConfigEditorScreen.js:118:          Likes received blur: <Text style={{ color: colors.text }}>{String(blurLikes)}</Text>
+src/screens/admin/ConfigEditorScreen.js:127:        <Text style={[typography.h3, { color: colors.text }]}>Intent options</Text>
+src/screens/admin/ConfigEditorScreen.js:128:        <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/admin/ConfigEditorScreen.js:148:        <Text style={[typography.h3, { color: colors.text }]}>Ok with bubbles (comma separated)</Text>
+src/screens/admin/ConfigEditorScreen.js:153:        <Text style={[typography.h3, { color: colors.text }]}>Self-concern bubbles (comma separated)</Text>
+src/screens/admin/ConfigEditorScreen.js:158:        <Text style={[typography.h3, { color: colors.text }]}>Other examples (comma separated)</Text>
+src/screens/admin/AdminHomeScreen.js:15:        <Text style={[typography.body, { color: colors.text }]}>{title}</Text>
+src/screens/admin/AdminHomeScreen.js:16:        {!!subtitle && <Text style={[typography.small, { color: colors.text2 }]}>{subtitle}</Text>}
+src/screens/admin/AdminHomeScreen.js:42:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/admin/AdminHomeScreen.js:43:      <Text style={[typography.h2, { color: colors.text, marginTop: 16 }]}>Admin</Text>
+src/screens/admin/AdminHomeScreen.js:44:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/admin/AdminHomeScreen.js:50:          <Text style={[typography.h3, { color: colors.text }]}>Unlock</Text>
+src/screens/admin/AdminHomeScreen.js:51:          <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/admin/AdminHomeScreen.js:63:          <Text style={[typography.tiny, { color: colors.text2, marginTop: spacing.md, lineHeight: 16 }]}>
+src/screens/admin/AdminHomeScreen.js:76:            <Text style={[typography.small, { color: colors.text2, lineHeight: 18 }]}>
+src/screens/admin/UserSeederScreen.js:33:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/admin/UserSeederScreen.js:35:        <Text style={[typography.small, { color: colors.text2, marginTop: 16 }]}>← Back</Text>
+src/screens/admin/UserSeederScreen.js:38:      <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>Seed demo users</Text>
+src/screens/admin/UserSeederScreen.js:39:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/admin/UserSeederScreen.js:47:        {!!msg && <Text style={[typography.tiny, { color: colors.text2, marginTop: spacing.md }]}>{msg}</Text>}
+src/screens/auth/SignupScreen.js:36:      style={{ flex: 1, backgroundColor: colors.bg }}
+src/screens/auth/SignupScreen.js:44:      <Text style={[typography.h1, { color: colors.text, marginTop: 16 }]}>
+src/screens/auth/SignupScreen.js:50:          <Text style={[typography.small, { color: colors.warn }]}>{err}</Text>
+src/screens/auth/LinkEmailScreen.js:37:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl, justifyContent: "center", gap: spacing.lg }}>
+src/screens/auth/LinkEmailScreen.js:38:      <Text style={[typography.h2, { color: colors.text }]}>Link email</Text>
+src/screens/auth/LinkEmailScreen.js:41:        <Text style={[typography.small, { color: colors.text2, lineHeight: 18 }]}>
+src/screens/auth/LinkEmailScreen.js:49:      {!!err && <Text style={[typography.tiny, { color: colors.danger }]}>{err}</Text>}
+src/screens/auth/LinkEmailScreen.js:50:      {!!ok && <Text style={[typography.tiny, { color: colors.success }]}>Linked successfully.</Text>}
+src/screens/auth/LoginScreen.js:50:    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+src/screens/auth/LoginScreen.js:70:            colors={colors.primaryGrad}
+src/screens/auth/LoginScreen.js:84:          <Text style={[typography.small, { color: colors.text2, marginTop: 10 }]}>
+src/screens/auth/LoginScreen.js:91:          <Card style={{ marginTop: spacing.lg, borderColor: colors.danger + "66" }}>
+src/screens/auth/LoginScreen.js:92:            <Text style={[typography.small, { color: colors.danger }]}>{err}</Text>
+src/screens/auth/LoginScreen.js:127:                  borderColor: colors.border,
+src/screens/auth/LoginScreen.js:130:                <Text style={[typography.tiny, { color: colors.text2 }]}>
+src/screens/auth/EmailAuthScreen.js:37:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl, justifyContent: "center", gap: spacing.lg }}>
+src/screens/auth/EmailAuthScreen.js:38:      <Text style={[typography.h2, { color: colors.text }]}>
+src/screens/auth/EmailAuthScreen.js:43:        <Text style={[typography.small, { color: colors.text2, lineHeight: 18 }]}>
+src/screens/auth/EmailAuthScreen.js:64:      {!!err && <Text style={[typography.tiny, { color: colors.danger }]}>{err}</Text>}
+src/screens/tabs/MatchesScreen.js:26:          borderColor: blurred ? colors.border : colors.glowBorder,
+src/screens/tabs/MatchesScreen.js:27:          backgroundColor: colors.card,
+src/screens/tabs/MatchesScreen.js:44:        <View style={{ flex: 1, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" }}>
+src/screens/tabs/MatchesScreen.js:46:          <Text style={[typography.tiny, { color: colors.text2, marginTop: 4 }]}>No photo</Text>
+src/screens/tabs/MatchesScreen.js:74:            borderColor: colors.border,
+src/screens/tabs/MatchesScreen.js:105:    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+src/screens/tabs/MatchesScreen.js:109:          <Text style={[typography.h2, { color: colors.text }]}>💌 Matches</Text>
+src/screens/tabs/MatchesScreen.js:110:          <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/tabs/MatchesScreen.js:117:          <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/tabs/MatchesScreen.js:119:            <Text style={{ color: colors.text2 }}>Edit in Firebase: </Text>
+src/screens/tabs/MatchesScreen.js:120:            <Text style={{ color: colors.primary }}>app_config/public → blur_likes_received</Text>
+src/screens/tabs/MatchesScreen.js:148:          <Card style={{ borderColor: colors.glowBorder }}>
+src/screens/tabs/MatchesScreen.js:150:            <Text style={[typography.h3, { color: colors.text, textAlign: "center" }]}>Unlock Likes</Text>
+src/screens/tabs/MatchesScreen.js:151:            <Text style={[typography.small, { color: colors.text2, marginTop: 8, lineHeight: 20, textAlign: "center" }]}>
+src/screens/tabs/SwipeScreen.js:52:const CARD_BG = colors.card || "#0F1117";
+src/screens/tabs/SwipeScreen.js:95:    <Text style={[typography.small, { color: colors.text2, marginBottom: 8 }]}>
+src/screens/tabs/SwipeScreen.js:119:      <Text style={[typography.tiny, { color: colors.text2 }]}>{q}</Text>
+src/screens/tabs/SwipeScreen.js:121:        <Text style={[typography.small, { color: colors.text, marginTop: 8, lineHeight: 20 }]}>
+src/screens/tabs/SwipeScreen.js:423:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/tabs/SwipeScreen.js:430:      <View style={{ flex: 1, backgroundColor: colors.bg, paddingTop: insets.top }}>
+src/screens/tabs/SwipeScreen.js:434:            <Text style={[typography.h3, { color: colors.text }]}>Swipe crashed</Text>
+src/screens/tabs/SwipeScreen.js:435:            <Text style={[typography.small, { color: colors.text2, marginTop: 8, lineHeight: 18 }]}>
+src/screens/tabs/SwipeScreen.js:446:      <View style={{ flex: 1, backgroundColor: colors.bg, paddingTop: insets.top }}>
+src/screens/tabs/SwipeScreen.js:450:            <Text style={[typography.h3, { color: colors.text }]}>No more profiles</Text>
+src/screens/tabs/SwipeScreen.js:451:            <Text style={[typography.small, { color: colors.text2, marginTop: 8, lineHeight: 18 }]}>
+src/screens/tabs/SwipeScreen.js:493:    <View style={{ flex: 1, backgroundColor: colors.bg, paddingTop: insets.top }}>
+src/screens/tabs/SwipeScreen.js:592:                        <Text style={[typography.small, { color: colors.text, lineHeight: 20 }]}>
+src/screens/tabs/SwipeScreen.js:633:                    <Text style={[typography.small, { color: colors.text }]}>
+src/screens/tabs/SwipeScreen.js:694:              colors={colors.primaryGrad}
+src/screens/tabs/SwipeScreen.js:732:        colors={colors.primaryGrad}
+src/screens/tabs/SwipeScreen.js:742:          <Text style={[typography.tiny, { color: colors.text }]}>⚙ Filters</Text>
+src/screens/tabs/SwipeScreen.js:746:          <Text style={[typography.tiny, { color: colors.text2 }]}>↺ Reset</Text>
+src/screens/tabs/SwipeScreen.js:756:    backgroundColor: colors.bg,
+src/screens/tabs/SwipeScreen.js:773:    color: colors.text,
+src/screens/tabs/SwipeScreen.js:782:    borderColor: colors.border,
+src/screens/tabs/SwipeScreen.js:791:    borderColor: colors.border,
+src/screens/tabs/SwipeScreen.js:798:    borderColor: colors.border,
+src/screens/tabs/SwipeScreen.js:813:    borderColor: colors.border,
+src/screens/tabs/SwipeScreen.js:876:    borderColor: colors.border,
+src/screens/tabs/ProfileScreen.js:54:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/tabs/ProfileScreen.js:56:        <Text style={[typography.small, { color: colors.text2, marginTop: 8 }]}>Loading…</Text>
+src/screens/tabs/ProfileScreen.js:66:      style={{ flex: 1, backgroundColor: colors.bg }}
+src/screens/tabs/ProfileScreen.js:71:        <View style={{ width: "100%", height: 380, backgroundColor: colors.surface }}>
+src/screens/tabs/ProfileScreen.js:77:              <Text style={[typography.small, { color: colors.text2, marginTop: 12 }]}>No photo yet</Text>
+src/screens/tabs/ProfileScreen.js:83:            colors={["transparent", "rgba(13,13,20,0.7)", colors.bg]}
+src/screens/tabs/ProfileScreen.js:91:              {user.age ? <Text style={{ color: colors.primary }}> · {user.age}</Text> : ""}
+src/screens/tabs/ProfileScreen.js:100:          <Text style={[typography.label, { color: colors.primary, marginBottom: 12 }]}>
+src/screens/tabs/ProfileScreen.js:105:              <Text style={[typography.body, { color: colors.text }]}>{label}</Text>
+src/screens/tabs/ProfileScreen.js:106:              <Text style={[typography.body, { color: val > 0 ? colors.primary : colors.muted, fontWeight: "700" }]}>
+src/screens/tabs/ProfileScreen.js:113:            <Text style={[typography.small, { color: colors.text2, marginTop: 4 }]}>
+src/screens/tabs/ProfileScreen.js:114:              Other: <Text style={{ color: colors.text }}>{user.otherText}</Text>
+src/screens/tabs/ProfileScreen.js:120:          <Text style={[typography.small, { color: colors.text2, lineHeight: 20 }]}>
+src/screens/tabs/ProfileScreen.js:122:            <Text style={{ color: colors.text }}>
+src/screens/tabs/ProfileScreen.js:126:              <Text style={{ color: colors.muted }}> +{user.okWith.length - 4} more</Text>
+src/screens/tabs/ProfileScreen.js:130:          <Text style={[typography.small, { color: colors.text2, lineHeight: 20, marginTop: 6 }]}>
+src/screens/tabs/ProfileScreen.js:132:            <Text style={{ color: colors.text }}>
+src/screens/tabs/ProfileScreen.js:136:              <Text style={{ color: colors.muted }}> +{user.selfConcerns.length - 4} more</Text>
+src/screens/tabs/ChatListScreen.js:217:      style={{ flex: 1, backgroundColor: colors.bg }}
+src/screens/tabs/ChatListScreen.js:225:      <Text style={[typography.h2, { color: colors.text }]}>Chat</Text>
+src/screens/tabs/ChatListScreen.js:227:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/tabs/ChatListScreen.js:251:            backgroundColor: colors.card2,
+src/screens/tabs/ChatListScreen.js:261:            placeholderTextColor={colors.muted}
+src/screens/tabs/ChatListScreen.js:262:            style={[typography.body, { color: colors.text }]}
+src/screens/tabs/ChatListScreen.js:304:                    borderColor: pinned ? colors.primary : colors.border,
+src/screens/tabs/ChatListScreen.js:312:                        <Text style={[typography.h3, { color: colors.text, flex: 1 }]} numberOfLines={1}>
+src/screens/tabs/ChatListScreen.js:318:                            <Text style={[typography.tiny, { color: colors.text2 }]}>{timeText}</Text>
+src/screens/tabs/ChatListScreen.js:331:                              color={pinned ? colors.primary : colors.text2}
+src/screens/tabs/ChatListScreen.js:341:                            { flex: 1, color: unread > 0 ? colors.text : colors.text2, fontWeight: unread > 0 ? "800" : "400" },
+src/screens/tabs/ChatListScreen.js:358:                              backgroundColor: colors.primary,
+src/screens/tabs/CircleScreen.js:24:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/tabs/CircleScreen.js:25:      <Text style={[typography.h2, { color: colors.text, marginTop: 16 }]}>Circle</Text>
+src/screens/tabs/CircleScreen.js:26:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/tabs/CircleScreen.js:38:        <Text style={[typography.h3, { color: colors.text }]}>Preview</Text>
+src/screens/tabs/CircleScreen.js:39:        <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/chat/ChatScreen.js:134:      style={{ flex: 1, backgroundColor: colors.bg }}
+src/screens/chat/ChatScreen.js:147:            <Text style={[typography.small, { color: colors.text2 }]}>← Back</Text>
+src/screens/chat/ChatScreen.js:151:            <Ionicons name="ellipsis-horizontal" size={22} color={colors.text2} />
+src/screens/chat/ChatScreen.js:155:        <Text style={[typography.h2, { color: colors.text }]} numberOfLines={1}>
+src/screens/chat/ChatScreen.js:159:        <Text style={[typography.tiny, { color: colors.text2 }]}>
+src/screens/chat/ChatScreen.js:189:                  backgroundColor: mine ? colors.primary : colors.card,
+src/screens/chat/ChatScreen.js:194:                  borderColor: colors.border,
+src/screens/chat/ChatScreen.js:197:                <Text style={[typography.body, { color: mine ? "#fff" : colors.text }]}>
+src/screens/chat/ChatScreen.js:210:                <Text style={[typography.tiny, { color: colors.text2 }]}>
+src/screens/chat/ChatScreen.js:218:                    color={isRead ? colors.primary : colors.text2}
+src/screens/chat/ChatScreen.js:227:            <Text style={[typography.h3, { color: colors.text }]}>Say hi 👋</Text>
+src/screens/chat/ChatScreen.js:231:                { color: colors.text2, marginTop: 6, lineHeight: 18 },
+src/screens/chat/ChatScreen.js:255:            backgroundColor: colors.card2,
+src/screens/chat/ChatScreen.js:265:            placeholderTextColor={colors.muted}
+src/screens/chat/ChatScreen.js:266:            style={[typography.body, { color: colors.text }]}
+src/screens/chat/ChatScreen.js:283:              backgroundColor: colors.primary,
+src/screens/chat/ChatScreen.js:296:          style={{ flex: 1, backgroundColor: colors.overlay, justifyContent: "flex-end" }}
+src/screens/chat/ChatScreen.js:299:            <View style={{ backgroundColor: colors.card, borderRadius: radius.xl, padding: spacing.lg, gap: 12 }}>
+src/screens/chat/ChatScreen.js:301:                <Text style={[typography.body, { color: colors.text }]}>Report</Text>
+src/screens/chat/ChatScreen.js:304:              <View style={{ height: 1, backgroundColor: colors.border }} />
+src/screens/chat/ChatScreen.js:307:                <Text style={[typography.body, { color: colors.danger }]}>Block</Text>
+src/screens/chat/ChatScreen.js:313:              style={{ backgroundColor: colors.card, borderRadius: radius.xl, padding: spacing.lg, alignItems: "center" }}
+src/screens/chat/ChatScreen.js:315:              <Text style={[typography.body, { color: colors.text }]}>Cancel</Text>
+src/screens/chat/ChatScreen.js:325:          style={{ flex: 1, backgroundColor: colors.overlay, justifyContent: "flex-end" }}
+src/screens/chat/ChatScreen.js:328:            <View style={{ backgroundColor: colors.card, borderRadius: radius.xl, padding: spacing.lg, gap: 12 }}>
+src/screens/chat/ChatScreen.js:329:              <Text style={[typography.h3, { color: colors.text }]}>Report user</Text>
+src/screens/chat/ChatScreen.js:339:                  <Text style={[typography.body, { color: colors.text }]}>{label}</Text>
+src/screens/chat/ChatScreen.js:346:              style={{ backgroundColor: colors.card, borderRadius: radius.xl, padding: spacing.lg, alignItems: "center" }}
+src/screens/chat/ChatScreen.js:348:              <Text style={[typography.body, { color: colors.text }]}>Cancel</Text>
+src/screens/onboarding/OkWithBubblesScreen.js:70:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/onboarding/OkWithBubblesScreen.js:71:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/onboarding/OkWithBubblesScreen.js:77:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl }}>
+src/screens/onboarding/OkWithBubblesScreen.js:79:        <Text style={[typography.h2, { color: colors.text }]}>What are you ok with?</Text>
+src/screens/onboarding/OkWithBubblesScreen.js:80:        <Text style={[typography.small, { color: colors.text2, lineHeight: 18 }]}>
+src/screens/onboarding/OkWithBubblesScreen.js:86:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/onboarding/OkWithBubblesScreen.js:87:          Selected: <Text style={{ color: colors.text }}>{selectedIds.length}</Text>
+src/screens/onboarding/WelcomeScreen.js:11:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl, justifyContent: "center", gap: spacing.lg }}>
+src/screens/onboarding/WelcomeScreen.js:12:      <Text style={[typography.h1, { color: colors.text }]}>Unchecked</Text>
+src/screens/onboarding/WelcomeScreen.js:13:      <Text style={[typography.body, { color: colors.text2, lineHeight: 22 }]}>
+src/screens/onboarding/WelcomeScreen.js:18:        <Text style={[typography.h3, { color: colors.text }]}>Quick setup</Text>
+src/screens/onboarding/WelcomeScreen.js:19:        <Text style={[typography.small, { color: colors.text2, marginTop: 8, lineHeight: 18 }]}>
+src/screens/onboarding/SelfConcernsBubblesScreen.js:70:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/onboarding/SelfConcernsBubblesScreen.js:71:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/onboarding/SelfConcernsBubblesScreen.js:77:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl }}>
+src/screens/onboarding/SelfConcernsBubblesScreen.js:79:        <Text style={[typography.h2, { color: colors.text }]}>Self-concerns</Text>
+src/screens/onboarding/SelfConcernsBubblesScreen.js:80:        <Text style={[typography.small, { color: colors.text2, lineHeight: 18 }]}>
+src/screens/onboarding/SelfConcernsBubblesScreen.js:86:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/onboarding/SelfConcernsBubblesScreen.js:87:          Selected: <Text style={{ color: colors.text }}>{selectedIds.length}</Text>
+src/screens/onboarding/PhotosPromptsScreen.js:71:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/onboarding/PhotosPromptsScreen.js:72:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/onboarding/PhotosPromptsScreen.js:78:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl }}>
+src/screens/onboarding/PhotosPromptsScreen.js:81:          <Text style={[typography.h2, { color: colors.text }]}>Photos & prompts</Text>
+src/screens/onboarding/PhotosPromptsScreen.js:82:          <Text style={[typography.small, { color: colors.text2, lineHeight: 18 }]}>
+src/screens/onboarding/PhotosPromptsScreen.js:88:          <Text style={[typography.h3, { color: colors.text }]}>Photos</Text>
+src/screens/onboarding/PhotosPromptsScreen.js:100:                  borderColor: colors.border,
+src/screens/onboarding/PhotosPromptsScreen.js:102:                  backgroundColor: colors.card2,
+src/screens/onboarding/PhotosPromptsScreen.js:110:                  <Text style={[typography.h3, { color: colors.text2 }]}>+</Text>
+src/screens/onboarding/PhotosPromptsScreen.js:116:          <Text style={[typography.tiny, { color: colors.text2, marginTop: spacing.md, lineHeight: 16 }]}>
+src/screens/onboarding/PhotosPromptsScreen.js:122:          <Text style={[typography.h3, { color: colors.text }]}>Prompts</Text>
+src/screens/onboarding/PhotosPromptsScreen.js:123:          <Text style={[typography.small, { color: colors.text2, marginTop: 8 }]}>
+src/screens/onboarding/PhotosPromptsScreen.js:130:                <Text style={[typography.body, { color: colors.text }]}>{p.q}</Text>
+src/screens/onboarding/IntentSlidersScreen.js:131:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/onboarding/IntentSlidersScreen.js:132:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/onboarding/IntentSlidersScreen.js:138:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl }}>
+src/screens/onboarding/IntentSlidersScreen.js:140:        <Text style={[typography.h2, { color: colors.text }]}>Intent sliders</Text>
+src/screens/onboarding/IntentSlidersScreen.js:141:        <Text style={[typography.small, { color: colors.text2, lineHeight: 18 }]}>
+src/screens/onboarding/IntentSlidersScreen.js:147:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/onboarding/IntentSlidersScreen.js:148:          Total: <Text style={{ color: colors.text }}>{totalNow}</Text> / 100
+src/screens/onboarding/SignupBasicsScreen.js:49:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/onboarding/SignupBasicsScreen.js:50:      <Text style={[typography.h1, { color: colors.text, marginTop: 16 }]}>Basics</Text>
+src/screens/onboarding/SignupBasicsScreen.js:51:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/onboarding/SignupBasicsScreen.js:57:          <Text style={[typography.small, { color: colors.warn }]}>{err}</Text>
+src/screens/onboarding/SignupBasicsScreen.js:65:          <Text style={[typography.small, { color: colors.text2 }]}>Gender</Text>
+src/screens/onboarding/SignupBasicsScreen.js:74:          <Text style={[typography.small, { color: colors.text2 }]}>Interested in</Text>
+src/screens/onboarding/VibeOnboardingScreen.js:45:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/onboarding/VibeOnboardingScreen.js:46:      <Text style={[typography.h2, { color: colors.text, marginTop: 16 }]}>What you want to vibe on</Text>
+src/screens/onboarding/VibeOnboardingScreen.js:49:        <Text style={[typography.small, { color: colors.text2 }]}>Examples</Text>
+src/screens/onboarding/OnboardingDoneScreen.js:66:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl, justifyContent: "center" }}>
+src/screens/onboarding/OnboardingDoneScreen.js:68:        <Text style={[typography.h2, { color: colors.text }]}>Profile status</Text>
+src/screens/onboarding/OnboardingDoneScreen.js:71:          <Text style={[typography.small, { color: colors.text2, marginTop: 8, lineHeight: 18 }]}>
+src/screens/onboarding/OnboardingDoneScreen.js:75:          <Text style={[typography.small, { color: colors.warn, marginTop: 8, lineHeight: 18 }]}>
+src/screens/onboarding/NameAgeScreen.js:102:      style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl }}
+src/screens/onboarding/NameAgeScreen.js:105:        <Text style={[typography.h2, { color: colors.text }]}>Basics</Text>
+src/screens/onboarding/NameAgeScreen.js:106:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/onboarding/NameAgeScreen.js:122:          <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/onboarding/NameAgeScreen.js:132:                backgroundColor: colors.card2,
+src/screens/onboarding/NameAgeScreen.js:145:                    { color: dob ? colors.text : colors.muted },
+src/screens/onboarding/NameAgeScreen.js:155:                    borderColor: colors.border,
+src/screens/onboarding/NameAgeScreen.js:161:                  <Text style={[typography.small, { color: colors.text }]}>
+src/screens/onboarding/NameAgeScreen.js:170:            <Text style={[typography.tiny, { color: colors.danger }]}>
+src/screens/onboarding/NameAgeScreen.js:174:            <Text style={[typography.tiny, { color: colors.text2 }]}>
+src/screens/onboarding/NameAgeScreen.js:199:              backgroundColor: colors.overlay,
+src/screens/onboarding/NameAgeScreen.js:207:                backgroundColor: colors.card,
+src/screens/onboarding/NameAgeScreen.js:210:                borderColor: colors.border,
+src/screens/onboarding/NameAgeScreen.js:215:              <Text style={[typography.h3, { color: colors.text }]}>
+src/screens/profile/EditProfileScreen.js:15:        <Text style={[typography.body, { color: colors.text }]}>{title}</Text>
+src/screens/profile/EditProfileScreen.js:17:          <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/profile/EditProfileScreen.js:42:      style={{ flex: 1, backgroundColor: colors.bg }}
+src/screens/profile/EditProfileScreen.js:48:      <Text style={[typography.h2, { color: colors.text, marginTop: 16 }]}>
+src/screens/profile/EditProfileScreen.js:51:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/profile/EditProfileScreen.js:91:          style={[typography.small, { color: colors.text2, lineHeight: 18 }]}
+src/screens/profile/EditIntentsScreen.js:155:          backgroundColor: colors.bg,
+src/screens/profile/EditIntentsScreen.js:160:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/profile/EditIntentsScreen.js:168:    <View style={{ flex: 1, backgroundColor: colors.bg, padding: spacing.xl }}>
+src/screens/profile/EditIntentsScreen.js:171:          style={[typography.small, { color: colors.text2, marginTop: 16 }]}
+src/screens/profile/EditIntentsScreen.js:177:      <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>
+src/screens/profile/EditIntentsScreen.js:180:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/profile/EditIntentsScreen.js:185:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/profile/EditIntentsScreen.js:186:          Total: <Text style={{ color: colors.text }}>{totalNow}</Text> / 100
+src/screens/profile/EditPromptsScreen.js:57:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/profile/EditPromptsScreen.js:58:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/profile/EditPromptsScreen.js:64:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/profile/EditPromptsScreen.js:66:        <Text style={[typography.small, { color: colors.text2, marginTop: 16 }]}>← Back</Text>
+src/screens/profile/EditPromptsScreen.js:69:      <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>Edit prompts</Text>
+src/screens/profile/EditPromptsScreen.js:70:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>Short, specific answers work best.</Text>
+src/screens/profile/EditPromptsScreen.js:73:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/profile/EditPromptsScreen.js:82:              <Text style={[typography.body, { color: colors.text }]}>{p.q}</Text>
+src/screens/profile/EditVibeScreen.js:75:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/profile/EditVibeScreen.js:76:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/profile/EditVibeScreen.js:82:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/profile/EditVibeScreen.js:84:        <Text style={[typography.small, { color: colors.text2, marginTop: 16 }]}>← Back</Text>
+src/screens/profile/EditVibeScreen.js:87:      <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>What you want to vibe on</Text>
+src/screens/profile/EditVibeScreen.js:90:        <Text style={[typography.small, { color: colors.text2 }]}>Examples</Text>
+src/screens/profile/EditVibeScreen.js:93:        <Text style={[typography.tiny, { color: colors.text2, lineHeight: 16 }]}>
+src/screens/profile/EditPhotosScreen.js:26:          borderColor: colors.border,
+src/screens/profile/EditPhotosScreen.js:27:          backgroundColor: colors.card,
+src/screens/profile/EditPhotosScreen.js:65:        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: colors.card2 }}>
+src/screens/profile/EditPhotosScreen.js:66:          <Text style={[typography.h2, { color: colors.text2 }]}>+</Text>
+src/screens/profile/EditPhotosScreen.js:67:          <Text style={[typography.small, { color: colors.text2 }]}>Add photo</Text>
+src/screens/profile/EditPhotosScreen.js:125:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/profile/EditPhotosScreen.js:127:        <Text style={[typography.small, { color: colors.text2, marginTop: 16 }]}>← Back</Text>
+src/screens/profile/EditPhotosScreen.js:130:      <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>Edit photos</Text>
+src/screens/profile/EditPhotosScreen.js:131:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/profile/EditPhotosScreen.js:136:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/profile/EditPhotosScreen.js:137:          Photos: <Text style={{ color: colors.text }}>{(user?.photos || []).length}</Text> / {maxPhotos}
+src/screens/profile/EditPhotosScreen.js:140:        <Text style={[typography.tiny, { color: colors.text2, lineHeight: 16 }]}>
+src/screens/profile/EditBubblesScreen.js:18:      <Text style={[typography.h3, { color: colors.text }]}>{title}</Text>
+src/screens/profile/EditBubblesScreen.js:19:      {!!subtitle && <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>{subtitle}</Text>}
+src/screens/profile/EditBubblesScreen.js:83:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+src/screens/profile/EditBubblesScreen.js:84:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/screens/profile/EditBubblesScreen.js:93:    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+src/screens/profile/EditBubblesScreen.js:95:        <Text style={[typography.small, { color: colors.text2, marginTop: 16 }]}>← Back</Text>
+src/screens/profile/EditBubblesScreen.js:98:      <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>Edit bubbles</Text>
+src/screens/profile/EditBubblesScreen.js:99:      <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
+src/screens/profile/EditBubblesScreen.js:104:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/screens/profile/EditBubblesScreen.js:105:          Ok with: <Text style={{ color: colors.text }}>{okWith.length}</Text> / {maxOk}
+src/screens/profile/EditBubblesScreen.js:107:        <Text style={[typography.small, { color: colors.text2, marginTop: 4 }]}>
+src/screens/profile/EditBubblesScreen.js:108:          Self-concerns: <Text style={{ color: colors.text }}>{selfConcerns.length}</Text> / {maxSelf}
+src/screens/profile/EditBubblesScreen.js:111:        <Text style={[typography.tiny, { color: colors.text2, lineHeight: 16 }]}>
+src/navigation/TabsNavigator.js:35:            color: focused ? colors.primary : colors.muted,
+src/navigation/TabsNavigator.js:49:            backgroundColor: colors.primary,
+src/navigation/TabsNavigator.js:70:          backgroundColor: colors.card,
+src/navigation/TabsNavigator.js:72:          borderColor: colors.border,
+src/navigation/RootNavigator.js:50:      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center", gap: 12 }}>
+src/navigation/RootNavigator.js:52:        <Text style={[typography.small, { color: colors.text2 }]}>Loading…</Text>
+src/components/TextField.js:32:    ? colors.danger
+src/components/TextField.js:34:      ? colors.primary
+src/components/TextField.js:35:      : colors.border;
+src/components/TextField.js:37:  const shadowColor = focused ? colors.primary : "transparent";
+src/components/TextField.js:42:        <Text style={[typography.label, { color: colors.text2 }]}>{label}</Text>
+src/components/TextField.js:47:          backgroundColor: colors.card2,
+src/components/TextField.js:70:              textStyle={[typography.body, { color: colors.muted }]}
+src/components/TextField.js:79:          placeholderTextColor={colors.muted}
+src/components/TextField.js:90:              color: colors.text,
+src/components/TextField.js:101:        <Text style={[typography.tiny, { color: colors.danger }]}>{error}</Text>
+src/components/TextField.js:103:        <Text style={[typography.tiny, { color: colors.text2 }]}>{helper}</Text>
+src/components/BlurredCard.js:23:          backgroundColor: colors.card,
+src/components/BlurredCard.js:25:          borderColor: colors.border,
+src/components/BlurredCard.js:32:      <View style={{ height: 220, backgroundColor: colors.card2 }}>
+src/components/BlurredCard.js:64:        <Text style={[typography.h3, { color: colors.text }]} numberOfLines={1}>
+src/components/BlurredCard.js:68:          <Text style={[typography.small, { color: colors.text2 }]} numberOfLines={2}>
+src/components/VerticalTicker.js:51:            { color: colors.text2, lineHeight: height },
+src/components/VoiceRecorder.js:91:                <Text style={[typography.h3, { color: colors.primary, marginBottom: spacing.md }]}>
+src/components/VoiceRecorder.js:106:                            backgroundColor: isRecording ? colors.primary : colors.card2,
+src/components/VoiceRecorder.js:108:                            borderColor: isRecording ? colors.primary2 : colors.border,
+src/components/VoiceRecorder.js:119:            <Text style={[typography.small, { color: colors.text2, marginTop: spacing.md }]}>
+src/components/SliderRow.js:19:        <Text style={[typography.body, { color: colors.text }]}>{label}</Text>
+src/components/SliderRow.js:20:        <Text style={[typography.body, { color: colors.text }]}>{value}</Text>
+src/components/SliderRow.js:29:        minimumTrackTintColor={colors.primary}
+src/components/SliderRow.js:30:        maximumTrackTintColor={colors.border}
+src/components/SliderRow.js:31:        thumbTintColor={colors.primary2}
+src/components/SliderRow.js:36:        <Text style={[typography.tiny, { color: colors.text2 }]}>{hint}</Text>
+src/components/SwipeFiltersModal.js:21:        <Text style={[typography.small, { color: colors.text }]}>{label}</Text>
+src/components/SwipeFiltersModal.js:22:        <Text style={[typography.small, { color: colors.text2 }]}>{valueText}</Text>
+src/components/SwipeFiltersModal.js:26:        <Text style={[typography.tiny, { color: colors.text2, marginTop: 6 }]}>{hint}</Text>
+src/components/SwipeFiltersModal.js:96:            <Text style={{ color: colors.text, fontSize: 18 }}>✕</Text>
+src/components/SwipeFiltersModal.js:136:          <Text style={[typography.small, { color: colors.text, marginBottom: 10 }]}>
+src/components/SwipeFiltersModal.js:152:            <Text style={[typography.small, { color: colors.text }]}>Advanced filters</Text>
+src/components/SwipeFiltersModal.js:153:            <Text style={[typography.tiny, { color: colors.text2, marginTop: 6, lineHeight: 16 }]}>
+src/components/SwipeFiltersModal.js:161:            <Text style={[typography.small, { color: colors.text }]}>Reset</Text>
+src/components/SwipeFiltersModal.js:165:            <Text style={[typography.small, { color: colors.text }]}>Apply</Text>
+src/components/SwipeFiltersModal.js:185:    backgroundColor: colors.bg,
+src/components/SwipeFiltersModal.js:187:    borderColor: colors.border,
+src/components/SwipeFiltersModal.js:201:    color: colors.text,
+src/components/SwipeFiltersModal.js:208:    borderColor: colors.border,
+src/components/SwipeFiltersModal.js:222:    borderColor: colors.border,
+src/components/SwipeFiltersModal.js:226:    color: colors.text,
+src/components/SwipeFiltersModal.js:235:    borderColor: colors.border,
+src/components/SwipeFiltersModal.js:243:    borderColor: colors.border,
+src/components/SwipeFiltersModal.js:254:    borderColor: colors.border,
+src/components/SwipeFiltersModal.js:264:    borderColor: colors.border,
+src/components/Card.js:12:          backgroundColor: colors.card,
+src/components/Card.js:15:          borderColor: glow ? colors.glowBorder : colors.border,
+src/components/BubblesPicker.js:24:      <Text style={[typography.small, { color: colors.text }]}>{label}</Text>
+src/components/BubblesPicker.js:111:            placeholderTextColor={colors.text2}
+src/components/BubblesPicker.js:120:              <Text style={[typography.tiny, { color: colors.text }]}>Add</Text>
+src/components/BubblesPicker.js:170:            <Text style={[typography.tiny, { color: colors.text2, marginTop: 6, lineHeight: 16 }]}>
+src/components/BubblesPicker.js:180:              <Text style={[typography.tiny, { color: colors.text }]}>
+src/components/BubblesPicker.js:201:    borderColor: colors.border,
+src/components/BubblesPicker.js:206:    color: colors.text,
+src/components/BubblesPicker.js:215:    borderColor: colors.border,
+src/components/BubblesPicker.js:223:    borderColor: colors.border,
+src/components/BubblesPicker.js:235:    borderColor: colors.border,
+src/components/BubblesPicker.js:243:    borderColor: colors.border,
+src/components/BubblesPicker.js:253:    color: colors.text,
+src/components/EmptyState.js:9:      <Text style={[typography.h3, { color: colors.text, textAlign: "center" }]}>
+src/components/EmptyState.js:16:            { color: colors.text2, textAlign: "center", lineHeight: 18 },
+src/components/Divider.js:12:          backgroundColor: colors.border,
+src/components/Chip.js:22:          colors={colors.primaryGrad}
+src/components/Chip.js:42:            borderColor: colors.border,
+src/components/Chip.js:43:            backgroundColor: colors.card2,
+src/components/Chip.js:46:          <Text style={[typography.small, { color: colors.text2 }]}>
+src/components/Button.js:26:    variant === "ghost" ? colors.text : "#fff";
+src/components/Button.js:31:    borderColor: colors.border,
+src/components/Button.js:41:    backgroundColor: colors.danger,
+src/components/Button.js:109:          colors={colors.primaryGrad}
+src/components/AvatarCard.js:37:          borderColor: colors.border,
+src/components/AvatarCard.js:61:          <Text style={[typography.small, { color: colors.text2, marginTop: 8 }]}>
+src/components/ProgressDots.js:16:            backgroundColor: i === index ? colors.primary : colors.border,
+src/components/Avatar.js:14:          backgroundColor: colors.card2,
+src/components/Avatar.js:16:          borderColor: colors.border,
+src/components/Avatar.js:21:        <Text style={[typography.small, { color: colors.text2 }]}>
+src/components/Avatar.js:36:        borderColor: colors.border,
+src/tree.txt:99:        colors.js
+App.js:14:    <View style={{ flex: 1, backgroundColor: colors.bg }}>

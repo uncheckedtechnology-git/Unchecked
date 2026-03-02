@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -12,6 +12,7 @@ import { GENDER_OPTIONS, INTERESTED_IN_OPTIONS } from "../../data/genderOptions"
 import { getUid, updateUser } from "../../services/userService";
 
 export default function SignupBasicsScreen({ navigation }) {
+  const { colors } = useTheme();
   const [legalName, setLegalName] = useState("");
   const [gender, setGender] = useState("man");
   const [interestedIn, setInterestedIn] = useState("women");

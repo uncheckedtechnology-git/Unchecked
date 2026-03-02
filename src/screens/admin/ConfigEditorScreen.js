@@ -1,7 +1,7 @@
 // src/screens/admin/ConfigEditorScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -21,6 +21,7 @@ function csvOf(arr) {
 }
 
 export default function ConfigEditorScreen({ navigation }) {
+  const { colors } = useTheme();
   const [cfg, setCfg] = useState(null);
   const [saving, setSaving] = useState(false);
 

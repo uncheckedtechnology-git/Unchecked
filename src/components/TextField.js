@@ -1,7 +1,6 @@
-// src/components/TextField.js
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { View, Text, TextInput } from "react-native";
-import { colors, radius, spacing, typography } from "../theme";
+import { colors, useTheme, radius, spacing, typography } from "../theme";
 import VerticalTicker from "./VerticalTicker";
 
 export default function TextField({
@@ -17,33 +16,42 @@ export default function TextField({
   helper,
   error,
 
-  // ✅ NEW (optional)
+  // animated placeholder
   tickerPlaceholderItems,
   tickerPlaceholderIntervalMs = 1500,
 }) {
+  const { colors } = useTheme();
+  const [focused, setFocused] = useState(false);
+
   const showTicker = useMemo(() => {
     const empty = value == null || String(value).length === 0;
     return empty && Array.isArray(tickerPlaceholderItems) && tickerPlaceholderItems.length > 0;
   }, [value, tickerPlaceholderItems]);
 
+  const borderColor = error
+    ? colors.danger
+    : focused
+      ? colors.primary
+      : colors.border;
+
+  const shadowColor = focused ? colors.primary : "transparent";
+
   return (
-    <View style={{ gap: 8 }}>
+    <View style={{ gap: 7 }}>
       {!!label && (
-        <Text style={[typography.small, { color: colors.text2 }]}>{label}</Text>
+        <Text style={[typography.label, { color: colors.text2 }]}>{label}</Text>
       )}
 
       <View
         style={{
           backgroundColor: colors.card2,
           borderRadius: radius.lg,
-          borderWidth: 1,
-          borderColor: error ? colors.danger : colors.border,
-          paddingHorizontal: spacing.md,
-          paddingVertical: multiline ? spacing.md : 12,
+          borderWidth: 1.5,
+          borderColor,
           position: "relative",
         }}
       >
-        {/* ✅ Animated placeholder overlay */}
+        {/* Animated placeholder overlay */}
         {showTicker ? (
           <View
             pointerEvents="none"
@@ -51,8 +59,8 @@ export default function TextField({
               position: "absolute",
               left: spacing.md,
               right: spacing.md,
-              top: multiline ? spacing.md : 12,
-              opacity: 0.85,
+              top: multiline ? spacing.md : 13,
+              opacity: 0.7,
             }}
           >
             <VerticalTicker
@@ -74,10 +82,17 @@ export default function TextField({
           autoCapitalize={autoCapitalize}
           secureTextEntry={secureTextEntry}
           multiline={multiline}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
           style={[
             typography.body,
-            { color: colors.text, padding: 0, margin: 0 },
-            multiline ? { minHeight: 90, textAlignVertical: "top" } : null,
+            {
+              color: colors.text,
+              paddingHorizontal: spacing.md,
+              paddingVertical: multiline ? spacing.md : 13,
+              margin: 0
+            },
+            multiline ? { minHeight: 90, textAlignVertical: "top" } : { minHeight: 50 },
           ]}
         />
       </View>

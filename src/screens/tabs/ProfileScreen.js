@@ -1,7 +1,8 @@
-// src/screens/tabs/ProfileScreen.js
+// src/screens/tabs/ProfileScreen.js — Premium dark profile
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, ScrollView, Pressable, Image } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { LinearGradient } from "expo-linear-gradient";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Divider from "../../components/Divider";
@@ -23,8 +24,8 @@ function topIntents(intents = {}) {
 }
 
 export default function ProfileScreen({ navigation }) {
+  const { colors } = useTheme();
   const [user, setUser] = useState(null);
-
   const taps = useRef(0);
   const lastTap = useRef(0);
 
@@ -50,17 +51,9 @@ export default function ProfileScreen({ navigation }) {
 
   if (!user) {
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: colors.bg,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Text style={[typography.small, { color: colors.text2 }]}>
-          Loading…
-        </Text>
+      <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" }}>
+        <Text style={{ fontSize: 32 }}>⏳</Text>
+        <Text style={[typography.small, { color: colors.text2, marginTop: 8 }]}>Loading…</Text>
       </View>
     );
   }
@@ -71,105 +64,83 @@ export default function ProfileScreen({ navigation }) {
   return (
     <ScrollView
       style={{ flex: 1, backgroundColor: colors.bg }}
-      contentContainerStyle={{
-        padding: spacing.xl,
-        paddingBottom: spacing.xxl,
-      }}
+      contentContainerStyle={{ paddingBottom: 100 }}
     >
-      <Pressable onPress={handleAdminTap} style={{ gap: 6, marginTop: 16 }}>
-        <Text style={[typography.h2, { color: colors.text }]}>Profile</Text>
-        <Text style={[typography.small, { color: colors.text2 }]}>
-          {user.name || "—"} {user.age ? `• ${user.age}` : ""}
-        </Text>
-      </Pressable>
+      {/* Hero photo with gradient scrim */}
+      <Pressable onPress={handleAdminTap}>
+        <View style={{ width: "100%", height: 380, backgroundColor: colors.surface }}>
+          {topPhoto ? (
+            <Image source={{ uri: topPhoto }} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
+          ) : (
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+              <Text style={{ fontSize: 64 }}>👤</Text>
+              <Text style={[typography.small, { color: colors.text2, marginTop: 12 }]}>No photo yet</Text>
+            </View>
+          )}
 
-      <Card
-        style={{ marginTop: spacing.lg, overflow: "hidden" }}
-        padded={false}
-      >
-        {topPhoto ? (
-          <Image
-            source={{ uri: topPhoto }}
-            style={{ width: "100%", height: 280 }}
+          {/* Bottom gradient scrim */}
+          <LinearGradient
+            colors={["transparent", "rgba(13,13,20,0.7)", colors.bg]}
+            style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 200 }}
           />
-        ) : (
-          <View
-            style={{
-              height: 220,
-              backgroundColor: colors.card2,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={[typography.small, { color: colors.text2 }]}>
-              No photo yet
+
+          {/* Name/age overlay */}
+          <View style={{ position: "absolute", bottom: 20, left: spacing.xl, right: spacing.xl }}>
+            <Text style={[typography.h2, { color: "#fff" }]}>
+              {user.name || "—"}
+              {user.age ? <Text style={{ color: colors.primary }}> · {user.age}</Text> : ""}
             </Text>
           </View>
-        )}
+        </View>
+      </Pressable>
 
-        <View style={{ padding: spacing.lg, gap: 10 }}>
-          <Text style={[typography.h3, { color: colors.text }]}>
-            Top intents
+      {/* Stats card */}
+      <View style={{ padding: spacing.xl, gap: 16, marginTop: -8 }}>
+        <Card>
+          <Text style={[typography.label, { color: colors.primary, marginBottom: 12 }]}>
+            Top Intents
           </Text>
-
           {top3.map(([label, val]) => (
-            <View
-              key={label}
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <Text style={[typography.body, { color: colors.text }]}>
-                {label}
-              </Text>
-              <Text style={[typography.body, { color: colors.text }]}>
+            <View key={label} style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 10 }}>
+              <Text style={[typography.body, { color: colors.text }]}>{label}</Text>
+              <Text style={[typography.body, { color: val > 0 ? colors.primary : colors.muted, fontWeight: "700" }]}>
                 {val}
               </Text>
             </View>
           ))}
 
-          {!!user.otherText ? (
-            <Text style={[typography.small, { color: colors.text2 }]}>
-              Other:{" "}
-              <Text style={{ color: colors.text }}>{user.otherText}</Text>
+          {!!user.otherText && (
+            <Text style={[typography.small, { color: colors.text2, marginTop: 4 }]}>
+              Other: <Text style={{ color: colors.text }}>{user.otherText}</Text>
             </Text>
-          ) : null}
+          )}
 
-          <Divider />
+          <Divider style={{ marginVertical: spacing.sm }} />
 
-          <Text
-            style={[typography.small, { color: colors.text2, lineHeight: 18 }]}
-          >
+          <Text style={[typography.small, { color: colors.text2, lineHeight: 20 }]}>
             Ok with:{" "}
             <Text style={{ color: colors.text }}>
               {(user.okWith || []).slice(0, 4).join(", ") || "—"}
             </Text>
             {user.okWith?.length > 4 ? (
-              <Text style={{ color: colors.text2 }}>
-                {" "}
-                +{user.okWith.length - 4} more
-              </Text>
+              <Text style={{ color: colors.muted }}> +{user.okWith.length - 4} more</Text>
             ) : null}
           </Text>
 
-          <Text
-            style={[typography.small, { color: colors.text2, lineHeight: 18 }]}
-          >
+          <Text style={[typography.small, { color: colors.text2, lineHeight: 20, marginTop: 6 }]}>
             Self-concerns:{" "}
             <Text style={{ color: colors.text }}>
               {(user.selfConcerns || []).slice(0, 4).join(", ") || "—"}
             </Text>
             {user.selfConcerns?.length > 4 ? (
-              <Text style={{ color: colors.text2 }}>
-                {" "}
-                +{user.selfConcerns.length - 4} more
-              </Text>
+              <Text style={{ color: colors.muted }}> +{user.selfConcerns.length - 4} more</Text>
             ) : null}
           </Text>
-        </View>
-      </Card>
+        </Card>
 
-      <View style={{ marginTop: spacing.lg }}>
+        {/* Actions */}
         <Button
-          title="Edit profilee"
+          title="✏️  Edit Profile"
           variant="ghost"
           onPress={() => navigation.navigate("EditProfile")}
         />
@@ -177,11 +148,7 @@ export default function ProfileScreen({ navigation }) {
           title="Log out"
           variant="ghost"
           onPress={async () => {
-            try {
-              await logout();
-            } catch (e) {
-              console.log("logout error", e);
-            }
+            try { await logout(); } catch (e) { console.log("logout error", e); }
           }}
         />
       </View>

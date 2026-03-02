@@ -1,8 +1,6 @@
 // src/services/userService.js
 import { doc, getDoc, setDoc, serverTimestamp, updateDoc } from "firebase/firestore";
-// import { db } from "../config/firebase";
 import { auth, db } from "../config/firebase";
-// import { auth, db } from "../config/firebase";
 
 import { getItem, setItem, LS_KEYS } from "./localStore";
 import { makeDefaultIntents, pickDefaultPrompts } from "../data/defaults";

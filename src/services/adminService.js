@@ -15,7 +15,8 @@ export async function getAdminPin() {
 export async function ensureAdminDoc() {
   const snap = await getDoc(ADMIN_DOC);
   if (snap.exists()) return;
-  await setDoc(ADMIN_DOC, { pin: "1234" }, { merge: true });
+  // ⚠️ Change this PIN in Firebase Console after first run!
+  await setDoc(ADMIN_DOC, { pin: "8491" }, { merge: true });
 }
 
 export async function loadPublicConfigRaw() {

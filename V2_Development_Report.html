@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Unchecked - V2 Development Report</title>
+    <style>
+        @page {
+            margin: 20mm 15mm 20mm 15mm;
+            size: A4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.6;
+            background: #fff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Cover */
+        .cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            text-align: center;
+            page-break-after: always;
+        }
+
+        .cover h1 {
+            font-size: 52px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .cover .accent {
+            color: #e8356d;
+        }
+
+        .cover .sub {
+            font-size: 20px;
+            color: #cbd5e1;
+            margin-top: 12px;
+        }
+
+        .cover .badge {
+            display: inline-block;
+            margin-top: 30px;
+            background: #e8356d;
+            color: #fff;
+            padding: 8px 28px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cover .date {
+            color: #64748b;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        /* Layout */
+        .page {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a2e;
+            border-bottom: 3px solid #e8356d;
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #334155;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            color: #475569;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 14px;
+            margin: 20px 0 30px;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            padding: 16px 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .stat .num {
+            font-size: 30px;
+            font-weight: 800;
+            color: #e8356d;
+        }
+
+        .stat .label {
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* Tech */
+        .tech-row {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0 24px;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 24px;
+            font-size: 12px;
+        }
+
+        th {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .free {
+            color: #16a34a;
+            font-weight: 700;
+        }
+
+        .paid {
+            color: #d97706;
+            font-weight: 700;
+        }
+
+        /* Phase blocks */
+        .phase {
+            border-left: 4px solid #e8356d;
+            padding: 14px 18px;
+            margin: 14px 0;
+            background: #fafafa;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .phase.p1 {
+            border-color: #8b5cf6;
+        }
+
+        .phase.p2 {
+            border-color: #06b6d4;
+        }
+
+        .phase.p3 {
+            border-color: #f59e0b;
+        }
+
+        .phase.p4 {
+            border-color: #10b981;
+        }
+
+        .phase.p5 {
+            border-color: #e8356d;
+        }
+
+        .phase .tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .phase.p1 .tag {
+            color: #8b5cf6;
+        }
+
+        .phase.p2 .tag {
+            color: #06b6d4;
+        }
+
+        .phase.p3 .tag {
+            color: #f59e0b;
+        }
+
+        .phase.p4 .tag {
+            color: #10b981;
+        }
+
+        .phase.p5 .tag {
+            color: #e8356d;
+        }
+
+        .phase h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+        }
+
+        .phase ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .phase li {
+            font-size: 12px;
+            color: #475569;
+            margin: 3px 0;
+        }
+
+        /* Before/After */
+        .compare {
+            display: flex;
+            gap: 14px;
+            margin: 10px 0 16px;
+        }
+
+        .compare-box {
+            flex: 1;
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-size: 11px;
+        }
+
+        .compare-box.before {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+
+        .compare-box.after {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .compare-box h4 {
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .compare-box.before h4 {
+            color: #dc2626;
+        }
+
+        .compare-box.after h4 {
+            color: #16a34a;
+        }
+
+        .compare-box pre {
+            font-size: 10.5px;
+            line-height: 1.5;
+            color: #334155;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+        }
+
+        /* Highlight box */
+        .highlight {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .highlight.green {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .highlight.blue {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+        }
+
+        /* Diagram */
+        .diagram-box {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+            background: #f8fafc;
+        }
+
+        /* Security grid */
+        .sec-grid {
+            display: flex;
+            gap: 12px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+
+        .sec-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px 16px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .sec-item h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 4px;
+        }
+
+        .sec-item p {
+            font-size: 11px;
+            color: #64748b;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 11px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ COVER ═══ -->
+    <div class="cover">
+        <h1>Unchecked <span class="accent">*</span></h1>
+        <p class="sub">V2 Development Report</p>
+        <span class="badge">Confidential - Client Review</span>
+        <p class="date">February 28, 2026<br>React Native + Expo + Firebase<br>Version 2.0</p>
+    </div>
+
+    <!-- ═══ PAGE 1: OVERVIEW ═══ -->
+    <div class="page">
+        <h2>Project Overview</h2>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="num">30+</div>
+                <div class="label">Screens</div>
+            </div>
+            <div class="stat">
+                <div class="num">5</div>
+                <div class="label">Phases</div>
+            </div>
+            <div class="stat">
+                <div class="num">12</div>
+                <div class="label">Services</div>
+            </div>
+            <div class="stat">
+                <div class="num">0</div>
+                <div class="label">Build Errors</div>
+            </div>
+        </div>
+
+        <h3>Technology Stack</h3>
+        <div class="tech-row">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Expo</span>
+            <span class="tech-tag">Firebase Auth</span>
+            <span class="tech-tag">Cloud Firestore</span>
+            <span class="tech-tag">Firebase Storage</span>
+            <span class="tech-tag">React Navigation</span>
+            <span class="tech-tag">Reanimated</span>
+            <span class="tech-tag">expo-av</span>
+        </div>
+
+        <h3>App Architecture</h3>
+        <div class="diagram-box">
+            <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif"
+                style="max-width:100%">
+                <defs>
+                    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+                        orient="auto">
+                        <path d="M0 0L10 5L0 10z" fill="#94a3b8" />
+                    </marker>
+                </defs>
+                <rect x="260" y="5" width="180" height="38" rx="19" fill="#e8356d" />
+                <text x="350" y="29" text-anchor="middle" fill="#fff" font-weight="700" font-size="13">App Launch</text>
+                <line x1="350" y1="43" x2="350" y2="60" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar)" />
+                <rect x="270" y="65" width="160" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" />
+                <text x="350" y="85" text-anchor="middle" fill="#334155" font-size="11">Firebase Auth Check</text>
+                <line x1="300" y1="95" x2="180" y2="125" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="400" y1="95" x2="520" y2="125" stroke="#94a3b8" stroke-width="1.5" />
+                <text x="210" y="115" fill="#dc2626" font-size="9" font-weight="600">Not logged in</text>
+                <text x="440" y="115" fill="#16a34a" font-size="9" font-weight="600">Logged in</text>
+                <rect x="70" y="130" width="220" height="50" rx="8" fill="#fef2f2" stroke="#fecaca" />
+                <text x="180" y="152" text-anchor="middle" fill="#dc2626" font-weight="700" font-size="12">Auth
+                    Stack</text>
+                <text x="180" y="170" text-anchor="middle" fill="#64748b" font-size="10">Login | Signup | Forgot
+                    Password</text>
+                <rect x="420" y="130" width="200" height="32" rx="6" fill="#f1f5f9" stroke="#cbd5e1" />
+                <text x="520" y="151" text-anchor="middle" fill="#334155" font-size="11">Profile Complete?</text>
+                <line x1="460" y1="162" x2="350" y2="200" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="580" y1="162" x2="580" y2="285" stroke="#94a3b8" stroke-width="1.5" />
+                <text x="380" y="185" fill="#dc2626" font-size="9" font-weight="600">No</text>
+                <text x="590" y="225" fill="#16a34a" font-size="9" font-weight="600">Yes</text>
+                <line x1="180" y1="180" x2="180" y2="205" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar)" />
+                <rect x="70" y="210" width="480" height="45" rx="8" fill="#8b5cf6" />
+                <text x="310" y="230" text-anchor="middle" fill="#fff" font-weight="700" font-size="12">3-Step
+                    Onboarding (V2)</text>
+                <text x="310" y="246" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Name/Age -->
+                    Photos (Cloud Upload) --> Vibe</text>
+                <line x1="310" y1="255" x2="310" y2="278" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#ar)" />
+                <rect x="220" y="282" width="170" height="28" rx="6" fill="#f0fdf4" stroke="#bbf7d0" />
+                <text x="305" y="301" text-anchor="middle" fill="#16a34a" font-size="10"
+                    font-weight="600">profileComplete = true</text>
+                <line x1="390" y1="296" x2="430" y2="325" stroke="#94a3b8" stroke-width="1.5" />
+                <line x1="580" y1="285" x2="490" y2="325" stroke="#94a3b8" stroke-width="1.5" />
+                <rect x="100" y="330" width="500" height="48" rx="10" fill="#10b981" />
+                <text x="350" y="352" text-anchor="middle" fill="#fff" font-weight="700" font-size="13">Main App -
+                    Bottom Tabs</text>
+                <text x="350" y="369" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Profile | Circle
+                    | Swipe | Matches | Chat</text>
+            </svg>
+        </div>
+
+        <!-- Security Overview -->
+        <h3>Security Features</h3>
+        <div class="sec-grid">
+            <div class="sec-item">
+                <h4>Authentication</h4>
+                <p>Firebase Auth with email/password. Forgot password via email reset link. Session persistence.</p>
+            </div>
+            <div class="sec-item">
+                <h4>Database Rules</h4>
+                <p>Users can only read/write their own data. Match data restricted to participants only.</p>
+            </div>
+            <div class="sec-item">
+                <h4>Storage Rules</h4>
+                <p>Photos limited to 5MB, image-only. Users can only upload to their own folder. All auth users can
+                    view.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ PAGE 2: PHASES ═══ -->
+    <div class="page page-break">
+        <h2>Development Phases</h2>
+
+        <div class="phase p1">
+            <div class="tag">Phase 1 - Foundation</div>
+            <h3>Light/Dark Mode System</h3>
+            <ul>
+                <li>Built ThemeContext with auto system preference detection</li>
+                <li>Refactored all 30+ screens to use dynamic useTheme() hook</li>
+                <li>Redesigned bottom tab navigation with floating pill style</li>
+            </ul>
+        </div>
+
+        <div class="phase p2">
+            <div class="tag">Phase 2 - Engagement</div>
+            <h3>Voice React Feature</h3>
+            <ul>
+                <li>Hold-to-record voice notes with haptic feedback</li>
+                <li>Voice React on every prompt card - triggers high-intent Super Like</li>
+            </ul>
+        </div>
+
+        <div class="phase p3">
+            <div class="tag">Phase 3 - UX Overhaul</div>
+            <h3>Streamlined 3-Step Onboarding</h3>
+            <ul>
+                <li>Reduced from 7+ steps to 3 steps - 60% less friction</li>
+                <li>Removed legacy IntentSliders, OkWithBubbles, SelfConcernsBubbles</li>
+            </ul>
+            <div class="compare">
+                <div class="compare-box before">
+                    <h4>Before (V1) - 7+ Steps</h4>
+                    <pre>1. Name/Age
+2. IntentSliders (total 100%)
+3. OkWith Bubbles
+4. SelfConcerns Bubbles
+5. Photos  6. Prompts
+7. Profile Check
+Users drop off at step 3-4</pre>
+                </div>
+                <div class="compare-box after">
+                    <h4>After (V2) - 3 Steps</h4>
+                    <pre>1. Name & Age
+2. Photos & Prompts (auto upload)
+3. Vibe Selection
+Done! Enter the app
+
+60% less friction
+Higher completion rate</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase p4">
+            <div class="tag">Phase 4 - Cloud Infrastructure</div>
+            <h3>Firebase Storage Photo Upload</h3>
+            <ul>
+                <li>Photos auto-uploaded to Firebase Storage during onboarding</li>
+                <li>Other users can now see profile photos on swipe cards</li>
+                <li>Each photo compressed to ~250KB (1080px JPEG at 75% quality)</li>
+            </ul>
+            <div class="compare">
+                <div class="compare-box before">
+                    <h4>Before</h4>
+                    <pre>uri: "file:///local/img.jpg"
+type: "local"
+
+Only visible on YOUR device
+Other users see blank cards</pre>
+                </div>
+                <div class="compare-box after">
+                    <h4>After</h4>
+                    <pre>uri: "https://firebase..."
+type: "remote"
+
+Visible to ALL users
+Loads on any device instantly</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase p5">
+            <div class="tag">Phase 5 - Security</div>
+            <h3>Forgot Password + Security Rules</h3>
+            <ul>
+                <li>Added "Forgot password?" on Login screen - Firebase email reset</li>
+                <li>Comprehensive Firestore + Storage security rules deployed</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ═══ PAGE 3: FILES + COST + DATA MODEL ═══ -->
+    <div class="page page-break">
+        <h2>Files Modified</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Action</th>
+                    <th>Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>storageService.js</td>
+                    <td style="color:#16a34a;font-weight:700">NEW</td>
+                    <td>Firebase Storage upload / download / delete</td>
+                </tr>
+                <tr>
+                    <td>VoiceRecorder.js</td>
+                    <td style="color:#16a34a;font-weight:700">NEW</td>
+                    <td>Hold-to-record voice component</td>
+                </tr>
+                <tr>
+                    <td>ThemeContext.js</td>
+                    <td style="color:#16a34a;font-weight:700">NEW</td>
+                    <td>Dynamic light/dark mode system</td>
+                </tr>
+                <tr>
+                    <td>storage.rules</td>
+                    <td style="color:#16a34a;font-weight:700">NEW</td>
+                    <td>Firebase Storage security rules</td>
+                </tr>
+                <tr>
+                    <td>PhotosPromptsScreen.js</td>
+                    <td style="color:#d97706;font-weight:700">MOD</td>
+                    <td>Cloud upload on "Next" press</td>
+                </tr>
+                <tr>
+                    <td>EditPhotosScreen.js</td>
+                    <td style="color:#d97706;font-weight:700">MOD</td>
+                    <td>Upload on add, delete on remove</td>
+                </tr>
+                <tr>
+                    <td>LoginScreen.js</td>
+                    <td style="color:#d97706;font-weight:700">MOD</td>
+                    <td>Added Forgot Password flow</td>
+                </tr>
+                <tr>
+                    <td>SwipeScreen.js</td>
+                    <td style="color:#d97706;font-weight:700">MOD</td>
+                    <td>Voice Reacts on prompt cards</td>
+                </tr>
+                <tr>
+                    <td>profileCompletion.js</td>
+                    <td style="color:#d97706;font-weight:700">MOD</td>
+                    <td>V2 validation requirements</td>
+                </tr>
+                <tr>
+                    <td>App.js + 20 screens</td>
+                    <td style="color:#d97706;font-weight:700">MOD</td>
+                    <td>ThemeProvider + dynamic colors</td>
+                </tr>
+                <tr>
+                    <td>firestore.rules</td>
+                    <td style="color:#d97706;font-weight:700">MOD</td>
+                    <td>Complete security rules</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Database Structure</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Collection</th>
+                    <th>Key Fields</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>users/{uid}</td>
+                    <td>name, age, photos[], prompts[], vibe[], profileComplete</td>
+                    <td>User profiles</td>
+                </tr>
+                <tr>
+                    <td>matches/{id}</td>
+                    <td>participants[], createdAt</td>
+                    <td>Matched pairs</td>
+                </tr>
+                <tr>
+                    <td>chats/{id}/messages</td>
+                    <td>senderId, text, createdAt</td>
+                    <td>Chat messages</td>
+                </tr>
+                <tr>
+                    <td>app_config/public</td>
+                    <td>max_photos, max_prompts, bubbles</td>
+                    <td>Admin settings</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Storage Cost (INR)</h2>
+        <p>Each user: max 6 photos x ~250KB = ~1.5 MB. Free limit: 5 GB from Google.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Users</th>
+                    <th>Storage</th>
+                    <th>Monthly Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1,000</td>
+                    <td>1.5 GB</td>
+                    <td class="free">Rs. 0 (FREE)</td>
+                </tr>
+                <tr>
+                    <td>3,000</td>
+                    <td>4.5 GB</td>
+                    <td class="free">Rs. 0 (FREE)</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700">3,333</td>
+                    <td style="font-weight:700">5.0 GB</td>
+                    <td class="free" style="font-weight:700">Rs. 0 (FREE LIMIT)</td>
+                </tr>
+                <tr>
+                    <td>5,000</td>
+                    <td>7.5 GB</td>
+                    <td class="paid">~Rs. 55/mo</td>
+                </tr>
+                <tr>
+                    <td>10,000</td>
+                    <td>15 GB</td>
+                    <td class="paid">~Rs. 265/mo</td>
+                </tr>
+                <tr>
+                    <td>1,00,000</td>
+                    <td>150 GB</td>
+                    <td class="paid">~Rs. 3,200/mo</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="highlight green">
+            First 3,300+ users are completely FREE. At 10,000 users the cost is ~Rs. 265/month - less than a Netflix
+            subscription.
+        </div>
+
+        <h2 style="margin-top: 30px;">Unique Selling Points</h2>
+        <div class="sec-grid">
+            <div class="sec-item">
+                <h4>Voice Reacts</h4>
+                <p>No other Indian dating app offers voice-note reactions on prompts. Creates deeper, more personal
+                    connections.</p>
+            </div>
+            <div class="sec-item">
+                <h4>3-Step Onboarding</h4>
+                <p>Most dating apps ask 20+ questions. Our 3-step flow means higher signups and less drop-off.</p>
+            </div>
+            <div class="sec-item">
+                <h4>Cost Efficient</h4>
+                <p>Firebase free tier supports 3,300+ users at zero cost. Scales affordably beyond that.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Unchecked - V2 Development Report | February 2026 | Confidential
+    </div>
+
+</body>
+
+</html>

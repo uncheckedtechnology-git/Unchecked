@@ -1,13 +1,14 @@
 // src/screens/tabs/CircleScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Chip from "../../components/Chip";
 import EmptyState from "../../components/EmptyState";
 import { loadConfig } from "../../services/configService";
 
 export default function CircleScreen() {
+  const { colors } = useTheme();
   const [config, setConfig] = useState(null);
 
   useEffect(() => {

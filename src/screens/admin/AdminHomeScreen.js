@@ -1,7 +1,7 @@
 // src/screens/admin/AdminHomeScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { colors, spacing, typography, radius } from "../../theme";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -20,6 +20,7 @@ function Row({ title, subtitle, onPress }) {
 }
 
 export default function AdminHomeScreen({ navigation }) {
+  const { colors } = useTheme();
   const [pin, setPin] = useState("");
   const [realPin, setRealPin] = useState(null);
   const [unlocked, setUnlocked] = useState(false);

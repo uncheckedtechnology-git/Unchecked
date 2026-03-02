@@ -1,7 +1,7 @@
 // src/screens/profile/EditIntentsScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import SliderRow from "../../components/SliderRow";
@@ -67,6 +67,7 @@ function redistribute(intents, changedKey, newValue, keys) {
 }
 
 export default function EditIntentsScreen({ navigation }) {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [user, setUser] = useState(null);
   const [config, setConfig] = useState(null);

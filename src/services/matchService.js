@@ -13,8 +13,6 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
-// import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-// import { db } from "../config/firebase";
 
 // --- Likes Received (for Matches tab) ---
 export async function getLikesReceived(myUid) {
@@ -23,12 +21,14 @@ export async function getLikesReceived(myUid) {
   const snaps = await getDocs(query(likesRef, orderBy("createdAt", "desc"), limit(50)));
   const uids = snaps.docs.map((d) => d.id);
 
-  const users = [];
-  for (const uid of uids) {
-    const u = await getDoc(doc(db, "users", uid));
-    if (u.exists()) users.push(u.data());
-  }
-  return users;
+  // Fetch all user docs in parallel instead of one-by-one
+  const userSnaps = await Promise.all(
+    uids.map((uid) => getDoc(doc(db, "users", uid)))
+  );
+
+  return userSnaps
+    .filter((u) => u.exists())
+    .map((u) => u.data());
 }
 
 // --- Matches (chat list) ---
@@ -55,7 +55,7 @@ export async function loadSeenSet(myUid) {
   return seen;
 }
 
-export async function fetchCandidates(myUid, { take = 40 } = {}) {
+export async function fetchCandidates(myUid, { take = 40, filters = {} } = {}) {
   // fetch users, filter out seen
   const seen = await loadSeenSet(myUid);
   const snaps = await getDocs(query(collection(db, "users"), limit(200)));
@@ -66,6 +66,26 @@ export async function fetchCandidates(myUid, { take = 40 } = {}) {
     if (!u?.uid) return;
     if (seen.has(u.uid)) return;
     if (!u.profileComplete) return;
+
+    // Apply age filter
+    if (filters.ageMin || filters.ageMax) {
+      const dob = u.dobISO || u.dob;
+      if (dob) {
+        const birthDate = new Date(typeof dob?.toDate === "function" ? dob.toDate() : dob);
+        const now = new Date();
+        let age = now.getFullYear() - birthDate.getFullYear();
+        const m = now.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && now.getDate() < birthDate.getDate())) age--;
+        if (filters.ageMin && age < filters.ageMin) return;
+        if (filters.ageMax && age > filters.ageMax) return;
+      }
+    }
+
+    // Apply gender filter
+    if (filters.genders && Array.isArray(filters.genders) && filters.genders.length > 0) {
+      if (u.gender && !filters.genders.includes(u.gender)) return;
+    }
+
     users.push(u);
   });
 

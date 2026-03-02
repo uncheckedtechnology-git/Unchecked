@@ -1,7 +1,7 @@
 // src/screens/auth/EmailAuthScreen.js
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
@@ -10,6 +10,7 @@ import { auth } from "../../config/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function EmailAuthScreen() {
+  const { colors } = useTheme();
   const [mode, setMode] = useState("signin"); // signin | signup
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");

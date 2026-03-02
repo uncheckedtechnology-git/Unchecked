@@ -1,7 +1,8 @@
-// src/screens/tabs/MatchesScreen.js
+// src/screens/tabs/MatchesScreen.js — Premium dark matches grid
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Pressable, Image, Modal } from "react-native";
-import { colors, spacing, typography, radius, shadow } from "../../theme";
+import { LinearGradient } from "expo-linear-gradient";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import EmptyState from "../../components/EmptyState";
@@ -21,12 +22,16 @@ function LikeCard({ person, blurred, onPress }) {
           aspectRatio: 4 / 5,
           borderRadius: radius.xl,
           overflow: "hidden",
-          borderWidth: 1,
-          borderColor: colors.border,
+          borderWidth: 1.5,
+          borderColor: blurred ? colors.border : colors.glowBorder,
           backgroundColor: colors.card,
-          opacity: pressed ? 0.92 : 1,
+          opacity: pressed ? 0.88 : 1,
+          shadowColor: blurred ? "#000" : "#E8356D",
+          shadowOpacity: blurred ? 0.30 : 0.50,
+          shadowRadius: 14,
+          shadowOffset: { width: 0, height: 6 },
+          elevation: 10,
         },
-        shadow.card,
       ]}
     >
       {uri ? (
@@ -36,19 +41,24 @@ function LikeCard({ person, blurred, onPress }) {
           blurRadius={blurred ? 18 : 0}
         />
       ) : (
-        <View style={{ flex: 1, backgroundColor: colors.card2, alignItems: "center", justifyContent: "center" }}>
-          <Text style={[typography.small, { color: colors.text2 }]}>No photo</Text>
+        <View style={{ flex: 1, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" }}>
+          <Text style={{ fontSize: 32 }}>👤</Text>
+          <Text style={[typography.tiny, { color: colors.text2, marginTop: 4 }]}>No photo</Text>
         </View>
       )}
 
-      <View style={{ position: "absolute", left: 12, bottom: 12, right: 12, gap: 2 }}>
-        <Text style={[typography.body, { color: "#fff" }]} numberOfLines={1}>
+      {/* Name overlay */}
+      <LinearGradient
+        colors={["transparent", "rgba(0,0,0,0.75)"]}
+        style={{ position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 12, paddingBottom: 12, paddingTop: 28 }}
+      >
+        <Text style={[typography.body, { color: "#fff", fontWeight: "700" }]} numberOfLines={1}>
           {blurred ? "Someone liked you" : (person?.name || "Like")}
         </Text>
-        <Text style={[typography.tiny, { color: "rgba(255,255,255,0.85)" }]} numberOfLines={1}>
-          {blurred ? "Unlock in Phase 5" : (person?.age ? `${person.age} yrs` : "")}
+        <Text style={[typography.tiny, { color: "rgba(255,255,255,0.75)" }]} numberOfLines={1}>
+          {blurred ? "Unlock to see" : (person?.age ? `${person.age} yrs` : "")}
         </Text>
-      </View>
+      </LinearGradient>
 
       {blurred ? (
         <View
@@ -56,13 +66,15 @@ function LikeCard({ person, blurred, onPress }) {
             position: "absolute",
             top: 12,
             right: 12,
-            backgroundColor: "rgba(0,0,0,0.55)",
+            backgroundColor: "rgba(0,0,0,0.65)",
             borderRadius: 999,
-            paddingVertical: 6,
+            paddingVertical: 5,
             paddingHorizontal: 10,
+            borderWidth: 1,
+            borderColor: colors.border,
           }}
         >
-          <Text style={[typography.tiny, { color: "#fff" }]}>Blur</Text>
+          <Text style={[typography.tiny, { color: "#fff" }]}>🔒</Text>
         </View>
       ) : null}
     </Pressable>
@@ -70,6 +82,7 @@ function LikeCard({ person, blurred, onPress }) {
 }
 
 export default function MatchesScreen() {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [config, setConfig] = useState(null);
   const [likes, setLikes] = useState([]);
@@ -90,21 +103,25 @@ export default function MatchesScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
-      <ScrollView contentContainerStyle={{ padding: spacing.xl, paddingBottom: spacing.xxl }}>
+      <ScrollView contentContainerStyle={{ padding: spacing.xl, paddingBottom: 100 }}>
+        {/* Header */}
         <View style={{ marginTop: 16, gap: 6 }}>
-          <Text style={[typography.h2, { color: colors.text }]}>Matches</Text>
+          <Text style={[typography.h2, { color: colors.text }]}>💌 Matches</Text>
           <Text style={[typography.small, { color: colors.text2 }]}>
-            Likes received (Bumble-style blur).
+            People who liked you
           </Text>
         </View>
 
-        <Card style={{ marginTop: spacing.lg }}>
+        {/* Info card */}
+        <Card style={{ marginTop: spacing.lg }} glow={false}>
           <Text style={[typography.small, { color: colors.text2 }]}>
-            {blurred ? "Blur is ON (curiosity mode)." : "Blur is OFF."}{" "}
-            Edit in Firebase: <Text style={{ color: colors.text }}>app_config/public → blur_likes_received</Text>
+            {blurred ? "🔒 Blur is ON — curiosity mode." : "✅ Blur is OFF."}{" "}
+            <Text style={{ color: colors.text2 }}>Edit in Firebase: </Text>
+            <Text style={{ color: colors.primary }}>app_config/public → blur_likes_received</Text>
           </Text>
         </Card>
 
+        {/* Grid */}
         <View style={{ marginTop: spacing.lg }}>
           {likes.length === 0 ? (
             <Card>
@@ -125,19 +142,20 @@ export default function MatchesScreen() {
         </View>
       </ScrollView>
 
+      {/* Paywall modal */}
       <Modal visible={paywall} transparent animationType="fade" onRequestClose={() => setPaywall(false)}>
-        <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "center", padding: spacing.xl }}>
-          <View style={{ borderRadius: radius.xl, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border, padding: spacing.lg }}>
-            <Text style={[typography.h3, { color: colors.text }]}>Unlock likes (Phase 5)</Text>
-            <Text style={[typography.small, { color: colors.text2, marginTop: 8, lineHeight: 18 }]}>
-              In the MVP we keep Likes Received blurred to build curiosity. In Phase 5 we’ll add ₹99/month and you can
-              see who liked you.
+        <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.75)", justifyContent: "center", padding: spacing.xl }}>
+          <Card style={{ borderColor: colors.glowBorder }}>
+            <Text style={{ fontSize: 36, textAlign: "center", marginBottom: 8 }}>💌</Text>
+            <Text style={[typography.h3, { color: colors.text, textAlign: "center" }]}>Unlock Likes</Text>
+            <Text style={[typography.small, { color: colors.text2, marginTop: 8, lineHeight: 20, textAlign: "center" }]}>
+              In Phase 5 we'll add ₹99/month and you can see who liked you.
             </Text>
             <View style={{ marginTop: spacing.lg, gap: 10 }}>
-              <Button title="Okay" onPress={() => setPaywall(false)} />
-              <Button title="Keep blur OFF (for testing)" variant="ghost" onPress={() => { setPaywall(false); }} />
+              <Button title="Got it 👍" onPress={() => setPaywall(false)} />
+              <Button title="Keep blur OFF (testing)" variant="ghost" onPress={() => setPaywall(false)} />
             </View>
-          </View>
+          </Card>
         </View>
       </Modal>
     </View>

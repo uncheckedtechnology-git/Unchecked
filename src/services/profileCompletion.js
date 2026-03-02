@@ -1,6 +1,7 @@
 // src/services/profileCompletion.js
 
 export function isIntentsValid(intents) {
+  // Keeping this for backwards compatibility if needed elsewhere
   if (!intents) return false;
   const keys = ["hookups", "marriage", "long_term", "friendship", "other"];
   const sum = keys.reduce((s, k) => s + (Number(intents[k]) || 0), 0);
@@ -10,18 +11,14 @@ export function isIntentsValid(intents) {
 export function computeProfileComplete(user) {
   if (!user) return false;
 
-  // Signup required
+  // New V2 Onboarding requirements
   if (!user.name?.trim()) return false;
   if (!user.dobISO) return false;
   if (!user.gender) return false;
   if (!user.interestedIn) return false;
 
-  // Onboarding required (B)
-  if (!isIntentsValid(user.intents)) return false;
-
-  // Must exist (can be empty)
-  if (!Array.isArray(user.okWith)) return false;
-  if (!Array.isArray(user.selfConcerns)) return false;
+  // We removed the intent sliders and bubbles blocks from V2 onboarding.
+  // We no longer require them to consider the profile 'complete'.
 
   return true;
 }

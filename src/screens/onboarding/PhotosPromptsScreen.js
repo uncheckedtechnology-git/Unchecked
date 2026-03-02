@@ -1,7 +1,7 @@
 // src/screens/onboarding/PhotosPromptsScreen.js
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, ScrollView, Image, Pressable } from "react-native";
-import { colors, spacing, typography, radius } from "../../theme";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import ProgressDots from "../../components/ProgressDots";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
@@ -11,9 +11,11 @@ import Divider from "../../components/Divider";
 import { getUid, updateUser } from "../../services/userService";
 import { loadConfig } from "../../services/configService";
 import { pickImageCompressed } from "../../services/imagePicker";
+import { uploadAllPhotos } from "../../services/storageService";
 import { pickDefaultPrompts } from "../../data/defaults";
 
 export default function PhotosPromptsScreen({ navigation }) {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [config, setConfig] = useState(null);
   const [photos, setPhotos] = useState([]); // {uri,type}
@@ -57,8 +59,9 @@ export default function PhotosPromptsScreen({ navigation }) {
     if (!uid) return;
     setSaving(true);
     try {
-      // Uploads are OFF by default. We store local URIs for now.
-      await updateUser(uid, { photos, prompts });
+      // Upload photos to Firebase Storage and get download URLs
+      const uploadedPhotos = await uploadAllPhotos(uid, photos);
+      await updateUser(uid, { photos: uploadedPhotos, prompts });
       navigation.navigate("VibeOnboarding");
     } finally {
       setSaving(false);
@@ -113,7 +116,7 @@ export default function PhotosPromptsScreen({ navigation }) {
           </View>
 
           <Text style={[typography.tiny, { color: colors.text2, marginTop: spacing.md, lineHeight: 16 }]}>
-            Tip: Tap a photo to remove it. Uploads to cloud are disabled in MVP; we’ll enable later via Admin toggle.
+            Tip: Tap a photo to remove it. Photos are uploaded to the cloud automatically when you press Next.
           </Text>
         </Card>
 
@@ -141,9 +144,9 @@ export default function PhotosPromptsScreen({ navigation }) {
         </Card>
 
         <View style={{ marginTop: spacing.lg }}>
-          <ProgressDots total={5} index={4} />
+          <ProgressDots total={3} index={1} />
           <View style={{ marginTop: spacing.lg }}>
-            <Button title="Finish" onPress={onFinish} loading={saving} />
+            <Button title={saving ? "Uploading photos…" : "Next"} onPress={onFinish} loading={saving} />
           </View>
         </View>
       </ScrollView>

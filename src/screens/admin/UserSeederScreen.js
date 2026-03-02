@@ -1,7 +1,7 @@
 // src/screens/admin/UserSeederScreen.js
 import React, { useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -10,6 +10,7 @@ import Divider from "../../components/Divider";
 import { seedDemoUsers } from "../../services/userService";
 
 export default function UserSeederScreen({ navigation }) {
+  const { colors } = useTheme();
   const [count, setCount] = useState("20");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");

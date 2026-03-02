@@ -1,8 +1,8 @@
-// src/navigation/TabsNavigator.js
+// src/navigation/TabsNavigator.js — Premium frosted glass tab bar
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text } from "react-native";
-import { colors, typography } from "../theme";
+import { Text, View } from "react-native";
+import { colors, useTheme, typography } from "../theme";
 import ProfileTab from "../screens/tabs/ProfileTab";
 
 import ProfileScreen from "../screens/tabs/ProfileScreen";
@@ -13,59 +13,98 @@ import ChatListScreen from "../screens/tabs/ChatListScreen";
 
 const Tab = createBottomTabNavigator();
 
-function TabLabel({ focused, title }) {
+const TAB_ICONS = {
+  Profile: "👤",
+  Circle: "⭕",
+  Swipe: "🔥",
+  Matches: "💌",
+  Chat: "💬",
+};
+
+function TabIcon({ name, focused }) {
+  const { colors } = useTheme();
   return (
-    <Text
-      style={[
-        typography.tiny,
-        { color: focused ? colors.text : colors.text2, marginBottom: 6 },
-      ]}
-    >
-      {title}
-    </Text>
+    <View style={{ alignItems: "center", gap: 4, paddingTop: 6 }}>
+      <Text style={{ fontSize: focused ? 22 : 20, opacity: focused ? 1 : 0.45 }}>
+        {TAB_ICONS[name]}
+      </Text>
+      <Text
+        style={[
+          typography.tiny,
+          {
+            color: focused ? colors.primary : colors.muted,
+            fontWeight: focused ? "700" : "500",
+            letterSpacing: 0.4,
+          },
+        ]}
+      >
+        {name}
+      </Text>
+      {focused && (
+        <View
+          style={{
+            width: 18,
+            height: 3,
+            borderRadius: 99,
+            backgroundColor: colors.primary,
+            marginTop: -2,
+          }}
+        />
+      )}
+    </View>
   );
 }
 
 export default function TabsNavigator() {
+  const { colors } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
+          position: "absolute",
+          bottom: 24,
+          left: 20,
+          right: 20,
+          borderRadius: 40,
           backgroundColor: colors.card,
-          borderTopColor: colors.border,
-          height: 66,
+          borderWidth: 1,
+          borderColor: colors.border,
+          height: 70,
+          paddingBottom: 0,
+          shadowColor: "#000",
+          shadowOpacity: 0.15,
+          shadowRadius: 20,
+          shadowOffset: { width: 0, height: 10 },
+          elevation: 10,
         },
-        tabBarActiveTintColor: colors.text,
-        tabBarInactiveTintColor: colors.text2,
+        tabBarShowLabel: false,
       }}
     >
       <Tab.Screen
         name="Profile"
         component={ProfileTab}
-        options={{ tabBarLabel: ({ focused }) => <TabLabel focused={focused} title="Profile" /> }}
+        options={{ tabBarIcon: ({ focused }) => <TabIcon name="Profile" focused={focused} /> }}
       />
       <Tab.Screen
         name="Circle"
         component={CircleScreen}
-        options={{ tabBarLabel: ({ focused }) => <TabLabel focused={focused} title="Circle" /> }}
+        options={{ tabBarIcon: ({ focused }) => <TabIcon name="Circle" focused={focused} /> }}
       />
-    
       <Tab.Screen
         name="Swipe"
         component={SwipeScreen}
-        options={{ tabBarLabel: ({ focused }) => <TabLabel focused={focused} title="Swipe" /> }}
+        options={{ tabBarIcon: ({ focused }) => <TabIcon name="Swipe" focused={focused} /> }}
       />
       <Tab.Screen
         name="Matches"
         component={MatchesScreen}
-        options={{ tabBarLabel: ({ focused }) => <TabLabel focused={focused} title="Matches" /> }}
+        options={{ tabBarIcon: ({ focused }) => <TabIcon name="Matches" focused={focused} /> }}
       />
-    
       <Tab.Screen
         name="Chat"
         component={ChatListScreen}
-        options={{ tabBarLabel: ({ focused }) => <TabLabel focused={focused} title="Chat" /> }}
+        options={{ tabBarIcon: ({ focused }) => <TabIcon name="Chat" focused={focused} /> }}
       />
     </Tab.Navigator>
   );

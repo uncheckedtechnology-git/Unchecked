@@ -1,19 +1,19 @@
 // src/screens/auth/SignupScreen.js
 import React, { useState } from "react";
 import { Text, ScrollView } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import { signupEmailCredentialsOnly } from "../../services/authService";
 
-export default function SignupScreen({ navigation  ,route= {}}) {
+export default function SignupScreen({ navigation, route = {} }) {
+  const { colors } = useTheme();
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
   const prefillEmail = route?.params?.email || "";
-  const prefillPassword = route?.params?.password || "";
   const [email, setEmail] = useState(prefillEmail);
-  const [password, setPassword] = useState(prefillPassword);
+  const [password, setPassword] = useState("");
 
   async function onSignup() {
     setErr("");
@@ -38,6 +38,8 @@ export default function SignupScreen({ navigation  ,route= {}}) {
         padding: spacing.xl,
         paddingBottom: spacing.xxl,
       }}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
     >
       <Text style={[typography.h1, { color: colors.text, marginTop: 16 }]}>
         Create account

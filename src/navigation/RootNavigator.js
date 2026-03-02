@@ -8,7 +8,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { computeProfileComplete } from "../services/profileCompletion";
 
 import { auth, db } from "../config/firebase";
-import { colors, typography } from "../theme";
+import { colors, useTheme, typography } from "../theme";
 import { useAppState } from "../state/appState";
 
 import AuthNavigator from "./AuthNavigator";
@@ -18,6 +18,7 @@ import OnboardingNavigator from "./OnboardingNavigator";
 const Stack = createNativeStackNavigator();
 
 export default function RootNavigator() {
+  const { colors } = useTheme();
   const { profileCompleteTick } = useAppState();
 
   const [boot, setBoot] = useState({
@@ -64,9 +65,7 @@ export default function RootNavigator() {
     );
   }
 
-  // const profileComplete = !!boot.userDoc?.profileComplete;
-// const profileComplete = computeProfileComplete(boot.userDoc);
-const profileComplete = boot.userDoc?.profileComplete === true;
+  const profileComplete = boot.userDoc?.profileComplete === true;
 
   return (
     <NavigationContainer>

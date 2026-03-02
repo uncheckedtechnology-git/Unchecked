@@ -1,7 +1,7 @@
 // src/screens/profile/EditPromptsScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -14,6 +14,7 @@ import { loadConfig } from "../../services/configService";
 import { pickDefaultPrompts } from "../../data/defaults";
 
 export default function EditPromptsScreen({ navigation }) {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [user, setUser] = useState(null);
   const [config, setConfig] = useState(null);

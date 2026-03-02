@@ -14,7 +14,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { doc, getDoc } from "firebase/firestore";
 
-import { colors, spacing, typography, radius } from "../../theme";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import EmptyState from "../../components/EmptyState";
 import Avatar from "../../components/Avatar";
@@ -377,6 +377,7 @@ function ChatListInner({ navigation, route }) {
 }
 
 export default function ChatListScreen() {
+  const { colors } = useTheme();
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ChatList" component={ChatListInner} />

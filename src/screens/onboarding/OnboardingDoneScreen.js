@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { View, Text } from "react-native";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 
@@ -11,6 +11,7 @@ import { getCurrentLatLng } from "../../services/locationService";
 import { computeProfileComplete, isIntentsValid } from "../../services/profileCompletion";
 
 export default function OnboardingDoneScreen({ navigation }) {
+  const { colors } = useTheme();
   const [saving, setSaving] = useState(false);
   const [missing, setMissing] = useState([]);
 
@@ -42,9 +43,6 @@ export default function OnboardingDoneScreen({ navigation }) {
       if (!u?.dobISO) miss.push("DOB");
       if (!u?.gender) miss.push("Gender");
       if (!u?.interestedIn) miss.push("Interested in");
-      if (!isIntentsValid(u?.intents)) miss.push("Intent sliders (must total 100)");
-      if (!Array.isArray(u?.okWith)) miss.push("Ok-with bubbles");
-      if (!Array.isArray(u?.selfConcerns)) miss.push("Self-concerns bubbles");
 
       setMissing(miss);
 

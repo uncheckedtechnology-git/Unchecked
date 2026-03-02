@@ -1,7 +1,7 @@
 // src/screens/profile/EditProfileScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
-import { colors, spacing, typography, radius } from "../../theme";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Divider from "../../components/Divider";
 import { getUid } from "../../services/userService";
@@ -24,6 +24,7 @@ function Row({ title, subtitle, onPress }) {
 }
 
 export default function EditProfileScreen({ navigation }) {
+  const { colors } = useTheme();
   const [user, setUser] = useState(null);
 
   useEffect(() => {

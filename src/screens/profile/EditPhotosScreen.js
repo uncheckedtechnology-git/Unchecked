@@ -1,7 +1,7 @@
 // src/screens/profile/EditPhotosScreen.js
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Image, Pressable, ScrollView } from "react-native";
-import { colors, spacing, typography, radius, shadow } from "../../theme";
+import { View, Text, Image, Pressable, ScrollView, Alert } from "react-native";
+import { colors, useTheme, spacing, typography, radius, shadow } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Divider from "../../components/Divider";
@@ -10,8 +10,10 @@ import { getUid, updateUser } from "../../services/userService";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { pickImageCompressed } from "../../services/imagePicker";
+import { uploadProfilePhoto, deleteProfilePhoto } from "../../services/storageService";
 
-function Tile({ uri, index, onAdd, onRemove }) {
+function Tile({ uri, index, onAdd, onRemove, uploading }) {
+  const { colors } = useTheme();
   const isAdd = !uri;
   return (
     <Pressable
@@ -64,7 +66,9 @@ function Tile({ uri, index, onAdd, onRemove }) {
       ) : (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: colors.card2 }}>
           <Text style={[typography.h2, { color: colors.text2 }]}>+</Text>
-          <Text style={[typography.small, { color: colors.text2 }]}>Add photo</Text>
+          <Text style={[typography.small, { color: colors.text2 }]}>
+            {uploading ? "Uploading…" : "Add photo"}
+          </Text>
         </View>
       )}
     </Pressable>
@@ -72,6 +76,7 @@ function Tile({ uri, index, onAdd, onRemove }) {
 }
 
 export default function EditPhotosScreen({ navigation }) {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [user, setUser] = useState(null);
   const [saving, setSaving] = useState(false);
@@ -102,8 +107,15 @@ export default function EditPhotosScreen({ navigation }) {
 
     setSaving(true);
     try {
-      const next = [...(user?.photos || []), { uri: picked.uri, type: "local" }].slice(0, maxPhotos);
+      // Upload to Firebase Storage first
+      const newIndex = photos.length;
+      const downloadURL = await uploadProfilePhoto(uid, picked.uri, newIndex);
+
+      // Save the download URL to Firestore
+      const next = [...(user?.photos || []), { uri: downloadURL, type: "remote" }].slice(0, maxPhotos);
       await updateUser(uid, { photos: next });
+    } catch (err) {
+      Alert.alert("Upload failed", err.message || "Could not upload photo. Please try again.");
     } finally {
       setSaving(false);
     }
@@ -113,6 +125,10 @@ export default function EditPhotosScreen({ navigation }) {
     if (!uid) return;
     setSaving(true);
     try {
+      // Delete from Firebase Storage
+      await deleteProfilePhoto(uid, index);
+
+      // Remove from Firestore
       const next = (user?.photos || []).filter((_, i) => i !== index);
       await updateUser(uid, { photos: next });
     } finally {
@@ -128,7 +144,7 @@ export default function EditPhotosScreen({ navigation }) {
 
       <Text style={[typography.h2, { color: colors.text, marginTop: 10 }]}>Edit photos</Text>
       <Text style={[typography.small, { color: colors.text2, marginTop: 6 }]}>
-        Tap a tile to add. Tap a photo to remove. Reorder later (Phase 2).
+        Tap a tile to add. Tap a photo to remove. Photos are uploaded to the cloud automatically.
       </Text>
 
       <Card style={{ marginTop: spacing.lg }}>
@@ -137,18 +153,18 @@ export default function EditPhotosScreen({ navigation }) {
         </Text>
         <Divider />
         <Text style={[typography.tiny, { color: colors.text2, lineHeight: 16 }]}>
-          MVP note: local only. In Phase 5, we enable cloud upload + moderation.
+          Photos are stored securely in the cloud and visible to other users.
         </Text>
       </Card>
 
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 14, marginTop: spacing.lg }}>
         {tiles.map((uri, i) => (
-          <Tile key={i} uri={uri} index={i} onAdd={addPhoto} onRemove={removePhoto} />
+          <Tile key={i} uri={uri} index={i} onAdd={addPhoto} onRemove={removePhoto} uploading={saving} />
         ))}
       </View>
 
       <View style={{ marginTop: spacing.xl }}>
-        <Button title={saving ? "Saving…" : "Add photo"} onPress={addPhoto} loading={saving} />
+        <Button title={saving ? "Uploading…" : "Add photo"} onPress={addPhoto} loading={saving} />
       </View>
     </ScrollView>
   );

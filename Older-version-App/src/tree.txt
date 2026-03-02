@@ -1,0 +1,104 @@
+Folder PATH listing for volume ACER
+Volume serial number is 9467-634A
+C:.
+|   tree.txt
+|   
++---admin
+|       AdminConfigScreen.js
+|       AdminGateScreen.js
+|       
++---components
+|       Avatar.js
+|       AvatarCard.js
+|       BlurredCard.js
+|       Button.js
+|       Card.js
+|       Chip.js
+|       Divider.js
+|       EmptyState.js
+|       ProgressDots.js
+|       SliderRow.js
+|       TextField.js
+|       VerticalTicker.js
+|       
++---config
+|       firebase.js
+|       
++---data
+|       defaults.js
+|       genderOptions.js
+|       
++---navigation
+|       AuthNavigator.js
+|       OnboardingNavigator.js
+|       RootNavigator.js
+|       TabsNavigator.js
+|       
++---screens
+|   +---admin
+|   |       AdminHomeScreen.js
+|   |       ConfigEditorScreen.js
+|   |       UserSeederScreen.js
+|   |       
+|   +---auth
+|   |       EmailAuthScreen.js
+|   |       LinkEmailScreen.js
+|   |       LoginScreen.js
+|   |       SignupScreen.js
+|   |       
+|   +---chat
+|   |       ChatScreen.js
+|   |       
+|   +---onboarding
+|   |       IntentSlidersScreen.js
+|   |       NameAgeScreen.js
+|   |       OkWithBubblesScreen.js
+|   |       OnboardingDoneScreen.js
+|   |       PhotosPromptsScreen.js
+|   |       SelfConcernsBubblesScreen.js
+|   |       SignupBasicsScreen.js
+|   |       VibeOnboardingScreen.js
+|   |       WelcomeScreen.js
+|   |       
+|   +---profile
+|   |       EditBubblesScreen.js
+|   |       EditIntentsScreen.js
+|   |       EditPhotosScreen.js
+|   |       EditProfileScreen.js
+|   |       EditPromptsScreen.js
+|   |       EditVibeScreen.js
+|   |       
+|   \---tabs
+|           ChatListScreen.js
+|           CircleScreen.js
+|           MatchesScreen.js
+|           ProfileScreen.js
+|           ProfileTab.js
+|           SwipeScreen.js
+|           
++---services
+|       adminService.js
+|       authService.js
+|       chatService.js
+|       configService.js
+|       imagePicker.js
+|       localStore.js
+|       locationService.js
+|       matchService.js
+|       profileCompletion.js
+|       resetService.js
+|       scoringService.js
+|       storagePolicy.js
+|       swipeService.js
+|       userService.js
+|       
++---state
+|       appState.js
+|       
+\---theme
+        colors.js
+        index.js
+        shadow.js
+        spacing.js
+        typography.js
+        

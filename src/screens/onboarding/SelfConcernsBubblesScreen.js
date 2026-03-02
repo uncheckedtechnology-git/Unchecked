@@ -1,7 +1,7 @@
 // src/screens/onboarding/SelfConcernsBubblesScreen.js
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 
 import ProgressDots from "../../components/ProgressDots";
 import Button from "../../components/Button";
@@ -12,6 +12,7 @@ import { getUid, updateUser } from "../../services/userService";
 import { loadBubbleSet } from "../../services/configService";
 
 export default function SelfConcernsBubblesScreen({ navigation }) {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [options, setOptions] = useState(null); // BubbleOption[]
   const [selectedIds, setSelectedIds] = useState([]);

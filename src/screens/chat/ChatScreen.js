@@ -13,7 +13,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { colors, spacing, typography, radius } from "../../theme";
+import { colors, useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Divider from "../../components/Divider";
 
@@ -33,6 +33,7 @@ function fmt(ts) {
 }
 
 export default function ChatScreen({ route, navigation }) {
+  const { colors } = useTheme();
   const { matchId, otherId } = route.params || {};
   const insets = useSafeAreaInsets();
 

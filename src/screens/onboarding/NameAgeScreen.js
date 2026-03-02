@@ -9,7 +9,7 @@ import {
   Modal,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import ProgressDots from "../../components/ProgressDots";
@@ -42,6 +42,7 @@ function toISODateOnly(d) {
 }
 
 export default function NameAgeScreen({ navigation }) {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [name, setName] = useState("");
   const [dob, setDob] = useState(null);
@@ -85,7 +86,7 @@ export default function NameAgeScreen({ navigation }) {
         age: age, // ✅ keep for filtering convenience
       });
 
-      navigation.navigate("IntentSliders");
+      navigation.navigate("PhotosPrompts");
     } finally {
       setSaving(false);
     }
@@ -179,7 +180,7 @@ export default function NameAgeScreen({ navigation }) {
 
       <View style={{ flex: 1 }} />
 
-      <ProgressDots total={5} index={0} />
+      <ProgressDots total={3} index={0} />
       <View style={{ marginTop: spacing.lg }}>
         <Button title="Next" onPress={onNext} loading={saving} />
       </View>
@@ -201,7 +202,7 @@ export default function NameAgeScreen({ navigation }) {
             }}
           >
             <Pressable
-              onPress={() => {}}
+              onPress={() => { }}
               style={{
                 backgroundColor: colors.card,
                 borderRadius: 24,

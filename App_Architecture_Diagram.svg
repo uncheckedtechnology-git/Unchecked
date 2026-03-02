@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 750" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="1000" height="750" fill="#0f0f14" rx="16"/>
+  
+  <!-- Title -->
+  <text x="500" y="45" text-anchor="middle" fill="#e8356d" font-weight="700" font-size="22">Unchecked ✦ — App Architecture</text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e8356d"/>
+      <stop offset="100%" style="stop-color:#ffa726"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#6ee7b7"/>
+    </linearGradient>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52525b"/>
+    </marker>
+  </defs>
+
+  <!-- ═══ APP LAUNCH ═══ -->
+  <rect x="400" y="70" width="200" height="48" rx="24" fill="url(#g1)"/>
+  <text x="500" y="100" text-anchor="middle" fill="#fff" font-weight="700" font-size="16">📱 App Launch</text>
+
+  <!-- Arrow -->
+  <line x1="500" y1="118" x2="500" y2="148" stroke="#52525b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Firebase Auth -->
+  <rect x="370" y="150" width="260" height="42" rx="10" fill="#1f1f23" stroke="#3f3f46" stroke-width="1.5"/>
+  <text x="500" y="176" text-anchor="middle" fill="#a1a1aa" font-size="14">🔥 Firebase Auth State Check</text>
+
+  <!-- Branches -->
+  <line x1="400" y1="192" x2="250" y2="235" stroke="#52525b" stroke-width="2"/>
+  <line x1="600" y1="192" x2="750" y2="235" stroke="#52525b" stroke-width="2"/>
+  <text x="290" y="220" fill="#fca5a5" font-size="12" font-weight="600">Not logged in</text>
+  <text x="630" y="220" fill="#86efac" font-size="12" font-weight="600">Logged in ✓</text>
+
+  <!-- ═══ AUTH STACK ═══ -->
+  <rect x="100" y="240" width="300" height="90" rx="14" fill="#2d1515" stroke="#7f1d1d" stroke-width="1.5"/>
+  <text x="250" y="270" text-anchor="middle" fill="#fca5a5" font-weight="700" font-size="16">🔐 Auth Stack</text>
+  <text x="250" y="295" text-anchor="middle" fill="#a1a1aa" font-size="13">Login Screen</text>
+  <text x="250" y="315" text-anchor="middle" fill="#a1a1aa" font-size="13">Signup Screen • Forgot Password</text>
+
+  <!-- ═══ PROFILE CHECK ═══ -->
+  <rect x="600" y="240" width="280" height="50" rx="10" fill="#1f1f23" stroke="#3f3f46" stroke-width="1.5"/>
+  <text x="740" y="271" text-anchor="middle" fill="#fcd34d" font-size="14" font-weight="600">Profile Complete?</text>
+
+  <!-- Branch from profile check -->
+  <line x1="660" y1="290" x2="500" y2="360" stroke="#52525b" stroke-width="2"/>
+  <line x1="820" y1="290" x2="820" y2="450" stroke="#52525b" stroke-width="2"/>
+  <text x="550" y="325" fill="#fca5a5" font-size="12" font-weight="600">No →</text>
+  <text x="835" y="370" fill="#86efac" font-size="12" font-weight="600">Yes ↓</text>
+
+  <!-- Arrow from Auth → Onboarding -->
+  <line x1="250" y1="330" x2="250" y2="365" stroke="#52525b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- ═══ ONBOARDING ═══ -->
+  <rect x="100" y="370" width="620" height="70" rx="14" fill="url(#g2)" opacity="0.9"/>
+  <text x="410" y="400" text-anchor="middle" fill="#fff" font-weight="700" font-size="17">⚡ 3-Step Onboarding (V2)</text>
+  <text x="410" y="425" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="13">① Name/Age  →  ② Photos ☁️ + Prompts  →  ③ Vibe Selection</text>
+
+  <!-- Arrow down -->
+  <line x1="410" y1="440" x2="410" y2="470" stroke="#52525b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Profile Complete = true -->
+  <rect x="310" y="475" width="200" height="40" rx="10" fill="#14291a" stroke="#166534" stroke-width="1.5"/>
+  <text x="410" y="500" text-anchor="middle" fill="#86efac" font-size="13" font-weight="600">profileComplete = true ✅</text>
+
+  <!-- Merge arrows into Tabs -->
+  <line x1="410" y1="515" x2="500" y2="555" stroke="#52525b" stroke-width="2"/>
+  <line x1="820" y1="450" x2="600" y2="555" stroke="#52525b" stroke-width="2"/>
+
+  <!-- ═══ MAIN APP TABS ═══ -->
+  <rect x="150" y="560" width="700" height="70" rx="16" fill="url(#g3)" opacity="0.9"/>
+  <text x="500" y="590" text-anchor="middle" fill="#fff" font-weight="700" font-size="18">🏠 Main App — Bottom Tab Navigator</text>
+  <text x="500" y="615" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13">Profile 👤  •  Circle 🔮  •  Swipe 💕  •  Matches 💬  •  Chat 📱</text>
+
+  <!-- Feature boxes below -->
+  <line x1="250" y1="630" x2="250" y2="660" stroke="#52525b" stroke-width="2"/>
+  <line x1="500" y1="630" x2="500" y2="660" stroke="#52525b" stroke-width="2"/>
+  <line x1="750" y1="630" x2="750" y2="660" stroke="#52525b" stroke-width="2"/>
+
+  <rect x="150" y="665" width="200" height="55" rx="10" fill="#1f1f23" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="250" y="690" text-anchor="middle" fill="#a78bfa" font-weight="600" font-size="13">🌗 Light / Dark Mode</text>
+  <text x="250" y="708" text-anchor="middle" fill="#71717a" font-size="11">Dynamic theme system</text>
+
+  <rect x="400" y="665" width="200" height="55" rx="10" fill="#1f1f23" stroke="#67e8f9" stroke-width="1.5"/>
+  <text x="500" y="690" text-anchor="middle" fill="#67e8f9" font-weight="600" font-size="13">🎙️ Voice Reacts</text>
+  <text x="500" y="708" text-anchor="middle" fill="#71717a" font-size="11">Hold-to-record on prompts</text>
+
+  <rect x="650" y="665" width="200" height="55" rx="10" fill="#1f1f23" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="750" y="690" text-anchor="middle" fill="#6ee7b7" font-weight="600" font-size="13">📷 Cloud Photos</text>
+  <text x="750" y="708" text-anchor="middle" fill="#71717a" font-size="11">Firebase Storage upload</text>
+</svg>

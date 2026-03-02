@@ -9,9 +9,10 @@ import {
   Dimensions,
   StyleSheet,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Chip from "../../components/Chip";
 import Divider from "../../components/Divider";
 import AvatarCard from "../../components/AvatarCard";
@@ -64,10 +65,10 @@ function getAge(dobLike) {
       typeof dobLike?.toDate === "function"
         ? dobLike.toDate()
         : dobLike instanceof Date
-        ? dobLike
-        : typeof dobLike === "string"
-        ? new Date(dobLike)
-        : null;
+          ? dobLike
+          : typeof dobLike === "string"
+            ? new Date(dobLike)
+            : null;
 
     if (!d || Number.isNaN(d.getTime())) return null;
 
@@ -147,6 +148,7 @@ function getAboutText(u) {
 }
 
 export default function SwipeScreen() {
+  const { colors } = useTheme();
   const [uid, setUid] = useState(null);
   const [me, setMe] = useState(null);
   const [queue, setQueue] = useState([]);
@@ -296,6 +298,14 @@ export default function SwipeScreen() {
       setLoading(false);
     }
   }
+
+  const handleVoiceReact = useCallback(async (uri, duration, promptQ) => {
+    Alert.alert(
+      "Voice Note Sent! 🎙️",
+      `Sent a ${Math.round(duration/1000)}s reaction to: "${promptQ}"`
+    );
+    runOnJS(flyOut)("like");
+  }, [flyOut]);
 
   const onDecision = useCallback(
     (decision) => {
@@ -451,7 +461,7 @@ export default function SwipeScreen() {
   const photos = normalizePhotos(current?.photos);
   const heroUri = photos[0] || null;
 
-  const age = getAge(current?.dob);
+  const age = getAge(current?.dobISO || current?.dob);
   const name = current?.name || "Name";
   const headline = age ? `${name}, ${age}` : name;
 
@@ -609,7 +619,7 @@ export default function SwipeScreen() {
                     if (b.type === "prompt") {
                       return (
                         <View key={`b-prompt-${i}`} style={styles.sectionPad}>
-                          <PromptCard prompt={b.p} idx={b.idx} />
+                          <PromptCard prompt={b.p} idx={b.idx} onVoiceReact={handleVoiceReact} />
                         </View>
                       );
                     }
@@ -648,7 +658,7 @@ export default function SwipeScreen() {
                         <SectionTitle>More prompts</SectionTitle>
                         <View style={{ gap: 12 }}>
                           {remainingPrompts.map((p, idx) => (
-                            <PromptCard key={`mp-${idx}`} prompt={p} idx={idx + 1} />
+                            <PromptCard key={`mp-${idx}`} prompt={p} idx={idx + 1} onVoiceReact={handleVoiceReact} />
                           ))}
                         </View>
                       </View>
@@ -672,12 +682,22 @@ export default function SwipeScreen() {
           alignItems: "center",
         }}
       >
-        <View style={{ flexDirection: "row", gap: 18 }}>
+        <View style={{ flexDirection: "row", gap: 22, alignItems: "center" }}>
+          {/* Pass button */}
           <Pressable onPress={() => flyOut("pass")} style={styles.btnPass}>
-            <Text style={{ fontSize: 26 }}>✕</Text>
+            <Text style={{ fontSize: 26, color: "rgba(255,255,255,0.70)" }}>✕</Text>
           </Pressable>
-          <Pressable onPress={() => flyOut("like")} style={styles.btnLike}>
-            <Text style={{ fontSize: 28 }}>❤</Text>
+
+          {/* Like button — gradient circle */}
+          <Pressable onPress={() => flyOut("like")} style={styles.btnLikeWrap}>
+            <LinearGradient
+              colors={colors.primaryGrad}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.btnLike}
+            >
+              <Text style={{ fontSize: 30 }}>❤</Text>
+            </LinearGradient>
           </Pressable>
         </View>
       </View>
@@ -688,7 +708,7 @@ export default function SwipeScreen() {
 function PeekCard({ profile }) {
   const photos = normalizePhotos(profile?.photos);
   const heroUri = photos[0] || null;
-  const age = getAge(profile?.dob);
+  const age = getAge(profile?.dobISO || profile?.dob);
   const name = profile?.name || "Name";
   const headline = age ? `${name}, ${age}` : name;
 
@@ -707,15 +727,23 @@ function PeekCard({ profile }) {
 function Header({ onReset, onFilters }) {
   return (
     <View style={styles.header}>
-      <Text style={styles.brand}>Unchecked</Text>
+      {/* Gradient brand name */}
+      <LinearGradient
+        colors={colors.primaryGrad}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={{ borderRadius: 6 }}
+      >
+        <Text style={[styles.brand, { color: "#fff", paddingHorizontal: 2 }]}>Unchecked ✦</Text>
+      </LinearGradient>
 
       <View style={{ flexDirection: "row", gap: 10, alignItems: "center" }}>
         <Pressable onPress={onFilters} style={styles.filterBtn}>
-          <Text style={[typography.tiny, { color: colors.text }]}>Filters</Text>
+          <Text style={[typography.tiny, { color: colors.text }]}>⚙ Filters</Text>
         </Pressable>
 
         <Pressable onPress={onReset} style={styles.resetBtn}>
-          <Text style={[typography.tiny, { color: colors.text2 }]}>Reset</Text>
+          <Text style={[typography.tiny, { color: colors.text2 }]}>↺ Reset</Text>
         </Pressable>
       </View>
     </View>
@@ -864,11 +892,11 @@ const styles = StyleSheet.create({
     left: 18,
     zIndex: 6,
     paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     borderRadius: 14,
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.60)",
-    backgroundColor: "rgba(0,0,0,0.25)",
+    borderWidth: 2.5,
+    borderColor: "#00C896",  // green LIKE
+    backgroundColor: "rgba(0,200,150,0.12)",
   },
 
   passStamp: {
@@ -877,11 +905,11 @@ const styles = StyleSheet.create({
     right: 18,
     zIndex: 6,
     paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     borderRadius: 14,
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.60)",
-    backgroundColor: "rgba(0,0,0,0.25)",
+    borderWidth: 2.5,
+    borderColor: "#FF4060",  // red NOPE
+    backgroundColor: "rgba(255,64,96,0.12)",
   },
 
   stampText: {
@@ -899,24 +927,35 @@ const styles = StyleSheet.create({
   },
 
   btnPass: {
-    width: 62,
-    height: 62,
+    width: 64,
+    height: 64,
     borderRadius: 999,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: "rgba(255,255,255,0.10)",
+    borderWidth: 1.5,
+    borderColor: "rgba(255,255,255,0.20)",
+    backgroundColor: "rgba(255,255,255,0.07)",
+    shadowColor: "#fff",
+    shadowOpacity: 0.10,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 4,
+  },
+
+  btnLikeWrap: {
+    borderRadius: 999,
+    shadowColor: "#E8356D",
+    shadowOpacity: 0.65,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 16,
   },
 
   btnLike: {
-    width: 70,
-    height: 70,
+    width: 74,
+    height: 74,
     borderRadius: 999,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: "rgba(255,255,255,0.12)",
   },
 });

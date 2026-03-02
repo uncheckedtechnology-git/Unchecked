@@ -1,16 +1,18 @@
 import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { colors, spacing, typography } from "../../theme";
+import { colors, useTheme, spacing, typography } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import VerticalTicker from "../../components/VerticalTicker";
+import ProgressDots from "../../components/ProgressDots";
 import { getUid, updateUser } from "../../services/userService";
 import { loadConfig } from "../../services/configService";
 
 const FALLBACK = ["memes", "Spotify playlists", "travel plans", "books", "web series", "gym", "late night talks"];
 
 export default function VibeOnboardingScreen({ navigation }) {
+  const { colors } = useTheme();
   const [vibeOn, setVibeOn] = useState("");
   const [saving, setSaving] = useState(false);
   const [cfg, setCfg] = useState(null);

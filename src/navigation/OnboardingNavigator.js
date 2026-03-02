@@ -11,14 +11,13 @@ import PhotosPromptsScreen from "../screens/onboarding/PhotosPromptsScreen";
 import OnboardingDoneScreen from "../screens/onboarding/OnboardingDoneScreen";
 import SignupBasicsScreen from "../screens/onboarding/SignupBasicsScreen";
 import VibeOnboardingScreen from "../screens/onboarding/VibeOnboardingScreen";
-// import SignupBasicsScreen from "../screens/onboarding/SignupBasicsScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function OnboardingNavigator() {
   return (
-  <Stack.Navigator initialRouteName="SignupBasics" screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="SignupBasics" component={SignupBasicsScreen} />
+    <Stack.Navigator initialRouteName="SignupBasics" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="SignupBasics" component={SignupBasicsScreen} />
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="NameAge" component={NameAgeScreen} />
       <Stack.Screen name="IntentSliders" component={IntentSlidersScreen} />
