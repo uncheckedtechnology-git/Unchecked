@@ -1,9 +1,11 @@
 // src/components/Avatar.js
 import React from "react";
 import { Image, View, Text } from "react-native";
-import { colors, radius, typography } from "../theme";
+import { useTheme, radius, typography } from "../theme";
 
 export default function Avatar({ uri, size = 44, label }) {
+  const { colors } = useTheme();
+
   if (!uri) {
     return (
       <View

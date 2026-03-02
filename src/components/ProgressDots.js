@@ -1,9 +1,11 @@
 // src/components/ProgressDots.js
 import React from "react";
 import { View } from "react-native";
-import { colors } from "../theme";
+import { useTheme } from "../theme";
 
 export default function ProgressDots({ total = 5, index = 0 }) {
+  const { colors } = useTheme();
+
   return (
     <View style={{ flexDirection: "row", gap: 8, alignSelf: "center" }}>
       {Array.from({ length: total }).map((_, i) => (

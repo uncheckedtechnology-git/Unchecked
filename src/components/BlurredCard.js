@@ -2,7 +2,7 @@
 import React from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import { BlurView } from "expo-blur";
-import { colors, radius, spacing, typography, shadow } from "../theme";
+import { useTheme, radius, spacing, typography, shadow } from "../theme";
 
 export default function BlurredCard({
   photoUri,
@@ -13,6 +13,8 @@ export default function BlurredCard({
   onPress,
   style,
 }) {
+  const { colors, isDark } = useTheme();
+
   return (
     <Pressable
       onPress={onPress}
@@ -41,7 +43,7 @@ export default function BlurredCard({
         {blurred ? (
           <BlurView
             intensity={35}
-            tint="dark"
+            tint={isDark ? "dark" : "light"}
             style={{
               position: "absolute",
               left: 0,

@@ -1,9 +1,11 @@
 // src/components/Divider.js
 import React from "react";
 import { View } from "react-native";
-import { colors } from "../theme";
+import { useTheme } from "../theme";
 
 export default function Divider({ style }) {
+  const { colors } = useTheme();
+
   return (
     <View
       style={[

@@ -1,8 +1,8 @@
-// src/screens/tabs/ProfileScreen.js — Premium dark profile
+// src/screens/tabs/ProfileScreen.js — Premium profile with theme toggle
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, ScrollView, Pressable, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors, useTheme, spacing, typography, radius } from "../../theme";
+import { useTheme, spacing, typography, radius } from "../../theme";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Divider from "../../components/Divider";
@@ -23,8 +23,14 @@ function topIntents(intents = {}) {
   return pairs.slice(0, 3);
 }
 
+const THEME_OPTIONS = [
+  { key: "light", label: "☀️ Light" },
+  { key: "dark", label: "🌙 Dark" },
+  { key: "system", label: "📱 System" },
+];
+
 export default function ProfileScreen({ navigation }) {
-  const { colors } = useTheme();
+  const { colors, setTheme, themeMode, isDark } = useTheme();
   const [user, setUser] = useState(null);
   const taps = useRef(0);
   const lastTap = useRef(0);
@@ -80,7 +86,7 @@ export default function ProfileScreen({ navigation }) {
 
           {/* Bottom gradient scrim */}
           <LinearGradient
-            colors={["transparent", "rgba(13,13,20,0.7)", colors.bg]}
+            colors={["transparent", isDark ? "rgba(13,13,20,0.7)" : "rgba(250,250,250,0.7)", colors.bg]}
             style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 200 }}
           />
 
@@ -136,6 +142,46 @@ export default function ProfileScreen({ navigation }) {
               <Text style={{ color: colors.muted }}> +{user.selfConcerns.length - 4} more</Text>
             ) : null}
           </Text>
+        </Card>
+
+        {/* ── Theme Toggle ────────────────────── */}
+        <Card>
+          <Text style={[typography.label, { color: colors.primary, marginBottom: 12 }]}>
+            🎨 Appearance
+          </Text>
+          <View style={{ flexDirection: "row", gap: 8 }}>
+            {THEME_OPTIONS.map((opt) => {
+              const isActive = themeMode === opt.key;
+              return (
+                <Pressable
+                  key={opt.key}
+                  onPress={() => setTheme(opt.key)}
+                  style={{
+                    flex: 1,
+                    paddingVertical: 10,
+                    borderRadius: 12,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderWidth: 1.5,
+                    borderColor: isActive ? colors.primary : colors.border,
+                    backgroundColor: isActive ? (isDark ? "rgba(232,53,109,0.15)" : "rgba(232,53,109,0.10)") : colors.card2,
+                  }}
+                >
+                  <Text
+                    style={[
+                      typography.small,
+                      {
+                        color: isActive ? colors.primary : colors.text2,
+                        fontWeight: isActive ? "700" : "500",
+                      },
+                    ]}
+                  >
+                    {opt.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
         </Card>
 
         {/* Actions */}

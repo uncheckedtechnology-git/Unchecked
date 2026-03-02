@@ -2,10 +2,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View } from "react-native";
-import { colors, useTheme, typography } from "../theme";
+import { useTheme, typography } from "../theme";
 import ProfileTab from "../screens/tabs/ProfileTab";
 
-import ProfileScreen from "../screens/tabs/ProfileScreen";
 import MatchesScreen from "../screens/tabs/MatchesScreen";
 import SwipeScreen from "../screens/tabs/SwipeScreen";
 import CircleScreen from "../screens/tabs/CircleScreen";
@@ -24,30 +23,29 @@ const TAB_ICONS = {
 function TabIcon({ name, focused }) {
   const { colors } = useTheme();
   return (
-    <View style={{ alignItems: "center", gap: 4, paddingTop: 6 }}>
-      <Text style={{ fontSize: focused ? 22 : 20, opacity: focused ? 1 : 0.45 }}>
+    <View style={{ alignItems: "center", justifyContent: "center", paddingTop: 6, width: 56 }}>
+      <Text style={{ fontSize: focused ? 20 : 18, opacity: focused ? 1 : 0.45 }}>
         {TAB_ICONS[name]}
       </Text>
       <Text
-        style={[
-          typography.tiny,
-          {
-            color: focused ? colors.primary : colors.muted,
-            fontWeight: focused ? "700" : "500",
-            letterSpacing: 0.4,
-          },
-        ]}
+        numberOfLines={1}
+        style={{
+          fontSize: 9,
+          color: focused ? colors.primary : colors.muted,
+          fontWeight: focused ? "700" : "500",
+          marginTop: 2,
+        }}
       >
         {name}
       </Text>
       {focused && (
         <View
           style={{
-            width: 18,
-            height: 3,
+            width: 14,
+            height: 2.5,
             borderRadius: 99,
             backgroundColor: colors.primary,
-            marginTop: -2,
+            marginTop: 1,
           }}
         />
       )}
@@ -63,14 +61,14 @@ export default function TabsNavigator() {
         headerShown: false,
         tabBarStyle: {
           position: "absolute",
-          bottom: 24,
-          left: 20,
-          right: 20,
-          borderRadius: 40,
+          bottom: 20,
+          left: 16,
+          right: 16,
+          borderRadius: 32,
           backgroundColor: colors.card,
           borderWidth: 1,
           borderColor: colors.border,
-          height: 70,
+          height: 64,
           paddingBottom: 0,
           shadowColor: "#000",
           shadowOpacity: 0.15,

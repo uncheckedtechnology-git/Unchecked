@@ -1,12 +1,8 @@
 // src/components/VerticalTicker.js
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, Easing, Text, View } from "react-native";
-import { typography, colors } from "../theme";
+import { useTheme, typography } from "../theme";
 
-/**
- * Vertical ticker: cycles strings top->bottom smoothly.
- * No external deps. Very stable.
- */
 export default function VerticalTicker({
   items = [],
   height = 20,
@@ -14,6 +10,7 @@ export default function VerticalTicker({
   style,
   textStyle,
 }) {
+  const { colors } = useTheme();
   const safe = useMemo(() => (Array.isArray(items) ? items.filter(Boolean) : []), [items]);
   const [idx, setIdx] = useState(0);
 

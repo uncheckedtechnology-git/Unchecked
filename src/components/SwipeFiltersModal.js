@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Modal, Pressable, Text, View, StyleSheet } from "react-native";
-import { colors, spacing, typography } from "../theme";
+import { Modal, Pressable, Text, View } from "react-native";
+import { useTheme, spacing, typography } from "../theme";
 import Chip from "./Chip";
 
 const DEFAULTS = {
@@ -14,7 +14,7 @@ function clamp(n, a, b) {
   return Math.max(a, Math.min(b, n));
 }
 
-function StepperRow({ label, valueText, onMinus, onPlus, hint }) {
+function StepperRow({ label, valueText, onMinus, onPlus, hint, colors }) {
   return (
     <View style={{ marginBottom: 14 }}>
       <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
@@ -27,11 +27,35 @@ function StepperRow({ label, valueText, onMinus, onPlus, hint }) {
       ) : null}
 
       <View style={{ flexDirection: "row", gap: 10, marginTop: 10 }}>
-        <Pressable onPress={onMinus} style={styles.stepBtn}>
-          <Text style={styles.stepBtnText}>−</Text>
+        <Pressable
+          onPress={onMinus}
+          style={{
+            width: 56,
+            height: 44,
+            borderRadius: 14,
+            alignItems: "center",
+            justifyContent: "center",
+            borderWidth: 1,
+            borderColor: colors.border,
+            backgroundColor: colors.card2,
+          }}
+        >
+          <Text style={{ color: colors.text, fontSize: 20, fontWeight: "800" }}>−</Text>
         </Pressable>
-        <Pressable onPress={onPlus} style={styles.stepBtn}>
-          <Text style={styles.stepBtnText}>+</Text>
+        <Pressable
+          onPress={onPlus}
+          style={{
+            width: 56,
+            height: 44,
+            borderRadius: 14,
+            alignItems: "center",
+            justifyContent: "center",
+            borderWidth: 1,
+            borderColor: colors.border,
+            backgroundColor: colors.card2,
+          }}
+        >
+          <Text style={{ color: colors.text, fontSize: 20, fontWeight: "800" }}>+</Text>
         </Pressable>
       </View>
     </View>
@@ -45,6 +69,7 @@ export default function SwipeFiltersModal({
   onApply,
   onReset,
 }) {
+  const { colors } = useTheme();
   const base = useMemo(() => ({ ...DEFAULTS, ...(value || {}) }), [value]);
   const [draft, setDraft] = useState(base);
 
@@ -86,22 +111,55 @@ export default function SwipeFiltersModal({
 
   return (
     <Modal visible={!!visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable style={styles.backdrop} onPress={onClose} />
+      <Pressable style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.55)" }} onPress={onClose} />
 
-      <View style={styles.sheet}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Filters</Text>
+      <View
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          borderTopLeftRadius: 22,
+          borderTopRightRadius: 22,
+          backgroundColor: colors.bg,
+          borderTopWidth: 1,
+          borderColor: colors.border,
+          overflow: "hidden",
+        }}
+      >
+        <View
+          style={{
+            paddingHorizontal: spacing.xl,
+            paddingTop: 14,
+            paddingBottom: 10,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "800", color: colors.text }}>Filters</Text>
 
-          <Pressable onPress={onClose} style={styles.iconBtn}>
+          <Pressable
+            onPress={onClose}
+            style={{
+              paddingHorizontal: 10,
+              paddingVertical: 8,
+              borderRadius: 999,
+              borderWidth: 1,
+              borderColor: colors.border,
+              backgroundColor: colors.card2,
+            }}
+          >
             <Text style={{ color: colors.text, fontSize: 18 }}>✕</Text>
           </Pressable>
         </View>
 
-        <View style={styles.body}>
+        <View style={{ paddingHorizontal: spacing.xl, paddingBottom: 14 }}>
           <StepperRow
             label="Age range"
             valueText={`${draft.ageMin}–${draft.ageMax}`}
             hint="Who you want to see"
+            colors={colors}
             onMinus={() =>
               setDraft((p) => ({ ...p, ageMin: clamp((p.ageMin || 18) - 1, 18, 99) }))
             }
@@ -113,6 +171,7 @@ export default function SwipeFiltersModal({
           <StepperRow
             label="Max age"
             valueText={`${draft.ageMax}`}
+            colors={colors}
             onMinus={() =>
               setDraft((p) => ({ ...p, ageMax: clamp((p.ageMax || 35) - 1, 18, 99) }))
             }
@@ -125,6 +184,7 @@ export default function SwipeFiltersModal({
             label="Distance"
             valueText={`${draft.maxDistanceKm} km`}
             hint="Uses your saved location"
+            colors={colors}
             onMinus={() =>
               setDraft((p) => ({ ...p, maxDistanceKm: clamp((p.maxDistanceKm || 25) - 5, 1, 500) }))
             }
@@ -148,7 +208,16 @@ export default function SwipeFiltersModal({
             </Pressable>
           </View>
 
-          <View style={styles.comingSoonBox}>
+          <View
+            style={{
+              marginTop: 6,
+              padding: 14,
+              borderRadius: 16,
+              borderWidth: 1,
+              borderColor: colors.border,
+              backgroundColor: colors.card2,
+            }}
+          >
             <Text style={[typography.small, { color: colors.text }]}>Advanced filters</Text>
             <Text style={[typography.tiny, { color: colors.text2, marginTop: 6, lineHeight: 16 }]}>
               Coming next: Drinking, Smoking, Workout, etc. (placeholders are ready).
@@ -156,112 +225,48 @@ export default function SwipeFiltersModal({
           </View>
         </View>
 
-        <View style={styles.footer}>
-          <Pressable onPress={reset} style={styles.secondaryBtn}>
+        <View
+          style={{
+            paddingHorizontal: spacing.xl,
+            paddingTop: 12,
+            paddingBottom: 12,
+            borderTopWidth: 1,
+            borderColor: colors.border,
+            flexDirection: "row",
+            gap: 12,
+          }}
+        >
+          <Pressable
+            onPress={reset}
+            style={{
+              flex: 1,
+              height: 48,
+              borderRadius: 16,
+              alignItems: "center",
+              justifyContent: "center",
+              borderWidth: 1,
+              borderColor: colors.border,
+              backgroundColor: colors.card2,
+            }}
+          >
             <Text style={[typography.small, { color: colors.text }]}>Reset</Text>
           </Pressable>
 
-          <Pressable onPress={apply} style={styles.primaryBtn}>
-            <Text style={[typography.small, { color: colors.text }]}>Apply</Text>
+          <Pressable
+            onPress={apply}
+            style={{
+              flex: 1,
+              height: 48,
+              borderRadius: 16,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: colors.primary,
+            }}
+          >
+            <Text style={[typography.small, { color: "#fff", fontWeight: "700" }]}>Apply</Text>
           </Pressable>
         </View>
       </View>
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  backdrop: {
-    flex: 1,
-    backgroundColor: "rgba(0,0,0,0.55)",
-  },
-  sheet: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
-    backgroundColor: colors.bg,
-    borderTopWidth: 1,
-    borderColor: colors.border,
-    overflow: "hidden",
-  },
-  header: {
-    paddingHorizontal: spacing.xl,
-    paddingTop: 14,
-    paddingBottom: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: colors.text,
-  },
-  iconBtn: {
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderRadius: 999,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: "rgba(255,255,255,0.06)",
-  },
-  body: {
-    paddingHorizontal: spacing.xl,
-    paddingBottom: 14,
-  },
-  stepBtn: {
-    width: 56,
-    height: 44,
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: "rgba(255,255,255,0.06)",
-  },
-  stepBtnText: {
-    color: colors.text,
-    fontSize: 20,
-    fontWeight: "800",
-  },
-  comingSoonBox: {
-    marginTop: 6,
-    padding: 14,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: "rgba(255,255,255,0.04)",
-  },
-  footer: {
-    paddingHorizontal: spacing.xl,
-    paddingTop: 12,
-    paddingBottom: 12,
-    borderTopWidth: 1,
-    borderColor: colors.border,
-    flexDirection: "row",
-    gap: 12,
-  },
-  secondaryBtn: {
-    flex: 1,
-    height: 48,
-    borderRadius: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: "rgba(255,255,255,0.06)",
-  },
-  primaryBtn: {
-    flex: 1,
-    height: 48,
-    borderRadius: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: "rgba(255,255,255,0.10)",
-  },
-});
