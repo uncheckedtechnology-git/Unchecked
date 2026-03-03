@@ -6,6 +6,16 @@
         "preview": {
             "android": {
                 "buildType": "apk"
+            },
+            "env": {
+                "EXPO_PUBLIC_FIREBASE_API_KEY": "AIzaSyCs9GtKOLGk2DC027kHnI0bA0rU2QBWhBk",
+                "EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN": "unchecked-66828.firebaseapp.com",
+                "EXPO_PUBLIC_FIREBASE_PROJECT_ID": "unchecked-66828",
+                "EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET": "unchecked-66828.firebasestorage.app",
+                "EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "927638946144",
+                "EXPO_PUBLIC_FIREBASE_APP_ID": "1:927638946144:web:c96509f066b3be06761e05",
+                "EXPO_PUBLIC_CLOUDINARY_CLOUD_NAME": "dvs96gcmy",
+                "EXPO_PUBLIC_CLOUDINARY_UPLOAD_PRESET": "unchecked_preset"
             }
         },
         "production": {
