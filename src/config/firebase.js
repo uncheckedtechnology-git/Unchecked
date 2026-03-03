@@ -9,14 +9,14 @@ import {
 } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 
-// ✅ Credentials loaded from .env file (not hardcoded)
+// ✅ Credentials hardcoded to ensure standalone APKs don't crash from missing .env files
 const firebaseConfig = {
-  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyCs9GtKOLGk2DC027kHnI0bA0rU2QBWhBk",
+  authDomain: "unchecked-66828.firebaseapp.com",
+  projectId: "unchecked-66828",
+  storageBucket: "unchecked-66828.firebasestorage.app",
+  messagingSenderId: "927638946144",
+  appId: "1:927638946144:web:c96509f066b3be06761e05",
 };
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
